@@ -2,32 +2,48 @@ package Model.Tile.Units.Player;
 
 
 import Model.Board.Board;
+import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
 
 public abstract class Player extends Unit {
-    protected int experience;
-    protected int level;
+    protected Stat experience;
+    protected Stat level;
 
-    public Player(int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
-        super('@',x,y, name, pool, amount, attack, defense, board);
-        experience=0;
-        level=1;
+    public Player(int x, int y, String name, int pool, int amount, int attack, int defense,Board board) {
+        super('@',x,y, name, pool, amount, attack, defense,board);
+        experience=new Stat(0);
+        level=new Stat(1);
     }
 
     public void levelUp() {
-        experience = experience - (50 * level);
-        level = level+1;
-        healthPool = healthPool + (10 * level);
-        healthAmount = healthPool;
-        attackPoints = attackPoints + (4 * level);
-        defensePoints = defensePoints + (1 * level);
-
+        experience.setStatPoints(experience.getStatPoints()-50*level.getStatPoints());
+        level.setStatPoints(level.getStatPoints()+1);
+        health.setPool(health.getPool()+10*level.getStatPoints());
+        health.setAmount(health.getPool());
+        attack.setStatPoints(attack.getStatPoints()+4*level.getStatPoints());
+        defense.setStatPoints(defense.getStatPoints()+level.getStatPoints());
     }
 
     public String toString(){
         return "@";
     }
 
+    public void moveUp() {
+
+    }
+
+    public void moveDown() {
+        System.out.print("ori the king");
+    }
+
+    public void moveLeft() {
+        System.out.print("ori the king");
+    }
+
+    public void moveRight() {
+        System.out.print("ori the king");
+    }
 
     public abstract void castSpecialAbility();
 }
+
