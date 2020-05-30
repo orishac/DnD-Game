@@ -6,16 +6,18 @@ import Model.Tile.Units.Enemy.Monster;
 
 import java.util.LinkedList;
 import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 public class Board {
 
     private Tile[][] board;
-    private List<Tile> monsterList;
+    private List<Monster> monsterList;
     private Tile player;
 
     public Board(int x,int j) {
         board = new Tile[x][j];
-        monsterList = new LinkedList<Tile>();
+        monsterList = new LinkedList<Monster>();
     }
 
     public void add(Tile t) {
@@ -75,10 +77,25 @@ public class Board {
         }
         return moved;
     }
-    public void addMonster(Tile t) {
+    public void addMonster(Monster t) {
         monsterList.add(t);
     }
 
+    public List<Monster> getMonstersInRange(int range) {
+        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive());
+        List<Monster> monsterList=monsterStream.collect(Collectors.toList());
+        return monsterList;
+    }
+
+    public List<Monster> getLivingMosters(List<Monster> monsterList) {
+        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->monster.isAlive());
+        List<Monster> livingMonsterList=monsterStream.collect(Collectors.toList());
+        return livingMonsterList;
+    }
+
+    public double range(Tile t1, Tile t2){
+        return Math.sqrt(Math.pow(t1.getXcoor()-t2.getXcoor(),2)+Math.pow(t1.getYcoor()-t2.getYcoor(),2));
+    }
 
 }
 

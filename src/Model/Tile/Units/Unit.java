@@ -1,70 +1,64 @@
 package Model.Tile.Units;
-
 import Model.Board.Board;
 import Model.Tile.Tile;
+import Model.Tile.Units.Enemy.Monster;
 
 public abstract class Unit extends Tile {
 
     protected String name;
-    protected int healthPool;
-    protected int healthAmount;
-    protected int attackPoints;
-    protected int defensePoints;
+    protected Resource health;
+    protected Stat defense;
+    protected Stat attack;
     protected Board board;
 
-    public Unit (char type, int x, int y, String name, int pool, int amount, int attack , int defense, Board board ) {
+    public Unit (char type, int x, int y, String name, int pool, int amount, int attack , int defense,Board board ) {
         super(type,x,y);
         this.name= name;
-        healthPool=pool;
-        healthAmount=amount;
-        attackPoints=attack;
-        defensePoints=defense;
-        this.board = board;
+        this.health=new Resource(pool,amount);
+        this.attack=new Stat(attack);
+        this.defense=new Stat(defense);
+        this.board=board;
     }
 
     public void setHealthPool(int pool){
-        healthPool=pool;
-
+        health.setPool(pool);
     }
-    public void setHealthAmount(int health){
-        healthAmount=health;
 
+    public void setHealthAmount(int newHealth){
+        health.setAmount(newHealth);
+        if(health.getAmount()==0) {
+            //need to update board
+        }
     }
+
     public void setAttackPoints(int attack){
-        attackPoints=attack;
-
+        this.attack.setStatPoints(attack);
     }
+
     public void setDefensePoints(int defense){
-        defensePoints=defense;
+        this.defense.setStatPoints(defense);
     }
 
-    public void moveUnitUp() {
-        if (board.moveUnitUp(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor() - 1, getYcoor());
-        }
+    public int getHealthAmount(){
+        return health.getAmount();
     }
-    public void moveUnitDown() {
-        if(board.moveUnitDown(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor() + 1, getYcoor());
-        }
+
+    public int getDefensePoints() {
+        return defense.getStatPoints();
     }
-    public void moveUnitLeft() {
-        if(board.moveUnitLeft(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor(), getYcoor() - 1);
-        }
-    }
-    public void moveUnitRight() {
-        if(board.moveUnitRight(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor(), getYcoor() + 1);
-        }
+
+    public boolean isAlive() {
+        return getHealthAmount()>0;
     }
 
     public String getName(){
         return name;
     }
 
-    public String toString() {
-        return getTile()+"";
-    }
-
+    /*TO DO: public void interact(Monster m);
+      public void interact(Empty e);
+      public void interact(Player p);
+      public void interact(Wall w);
+     */
 }
+
