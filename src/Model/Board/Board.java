@@ -106,5 +106,21 @@ public class Board {
         t1.setPosition(p2);
         t2.setPosition(p1);
     }
+
+    public boolean canMoveUp(Tile t){
+        return t.getYcoor()>0;
+    }
+
+    public boolean canMoveDown(Tile t) {
+        return t.getYcoor()<board.length-1;
+    }
+
+    public boolean canMoveLeft(Tile t) {
+        return t.getXcoor()>0
+    }
+
+    public boolean canMoveRight(Tile t){
+        return t.getXcoor()<board[0].length-1;
+    }
 }
 

@@ -1,6 +1,7 @@
 package Model.Tile.Units.Enemy;
 
 import Model.Board.Board;
+import Model.Tile.Units.Visitor;
 
 public class Trap extends Enemy {
 
@@ -22,5 +23,10 @@ public class Trap extends Enemy {
     @Override
     public boolean isVisible() {
         return visible;
+    }
+
+    @Override
+    public void acceptInteraction(Visitor visitor) {
+        visitor.interact(this);
     }
 }

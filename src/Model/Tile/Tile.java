@@ -3,6 +3,7 @@ package Model.Tile;
 import Controller.BoardController;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visited;
+import Model.Tile.Units.Visitor;
 
 public abstract class Tile implements Visited {
     private char tile;
@@ -35,7 +36,6 @@ public abstract class Tile implements Visited {
         position=p;
     }
 
-    public void acceptInteraction(Unit visitor) {
-        visitor.interaction(this);
-    }
+    public abstract void acceptInteraction(Visitor visitor);
+
 }
