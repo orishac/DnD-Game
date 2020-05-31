@@ -3,6 +3,8 @@ package Model.Tile.Units.Player;
 import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Stat;
+import Model.Tile.Units.Visitor;
+
 import java.util.Random;
 
 import java.util.List;
@@ -43,4 +45,8 @@ public class Warrior extends Player {
         }
     }
 
+    @Override
+    public void acceptInteraction(Visitor visitor) {
+        visitor.interact(this);
+    }
 }

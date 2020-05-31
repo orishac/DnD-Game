@@ -3,7 +3,6 @@ package Model.Tile;
 import Controller.BoardController;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visited;
-import Model.Tile.Units.Visitor;
 
 public abstract class Tile implements Visited {
     private char tile;

@@ -1,5 +1,7 @@
 package Model.Tile;
 
+import Model.Tile.Units.Visitor;
+
 public class Wall extends Tile {
 
 
@@ -9,5 +11,10 @@ public class Wall extends Tile {
 
     public String toString(){
         return "#";
+    }
+
+    @Override
+    public void acceptInteraction(Visitor visitor) {
+        visitor.interact(this);
     }
 }

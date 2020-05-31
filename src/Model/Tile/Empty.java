@@ -1,5 +1,7 @@
 package Model.Tile;
 
+import Model.Tile.Units.Visitor;
+
 public class Empty extends Tile {
 
     public Empty(char type, int x, int y) {
@@ -10,4 +12,8 @@ public class Empty extends Tile {
         return ".";
     }
 
+    @Override
+    public void acceptInteraction(Visitor visitor) {
+        visitor.interact(this);
+    }
 }
