@@ -1,5 +1,6 @@
 package Model.Board;
 
+import Model.Tile.Position;
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
@@ -82,7 +83,7 @@ public class Board {
     }
 
     public List<Monster> getMonstersInRange(int range) {
-        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive());
+        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive()&monster.isVisible());
         List<Monster> monsterList=monsterStream.collect(Collectors.toList());
         return monsterList;
     }
@@ -97,5 +98,13 @@ public class Board {
         return Math.sqrt(Math.pow(t1.getXcoor()-t2.getXcoor(),2)+Math.pow(t1.getYcoor()-t2.getYcoor(),2));
     }
 
+    public void switchPlaces(Tile t1,Tile t2) {
+        Position p1=t1.getPosition();
+        Position p2=t2.getPosition();
+        board[t1.getXcoor()][t1.getYcoor()]=t2;
+        board[t2.getXcoor()][t2.getXcoor()]=t1;
+        t1.setPosition(p2);
+        t2.setPosition(p1);
+    }
 }
 

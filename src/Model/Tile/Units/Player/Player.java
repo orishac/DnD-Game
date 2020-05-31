@@ -28,22 +28,6 @@ public abstract class Player extends Unit {
         return "@";
     }
 
-    public void moveUp() {
-
-    }
-
-    public void moveDown() {
-        System.out.print("ori the king");
-    }
-
-    public void moveLeft() {
-        System.out.print("ori the king");
-    }
-
-    public void moveRight() {
-        System.out.print("ori the king");
-    }
-
     public abstract void castSpecialAbility();
 }
 

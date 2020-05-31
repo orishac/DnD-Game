@@ -12,6 +12,8 @@ public abstract class Enemy extends Unit {
         super(type, x, y, name, pool, amount, attack, defense, board);
     }
 
+    public abstract boolean isVisible();
+
     public String toString() {
         return super.toString();
     }

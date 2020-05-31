@@ -18,4 +18,9 @@ public class Trap extends Enemy {
         ticksCount = 0;
         visible =false;
     }
+
+    @Override
+    public boolean isVisible() {
+        return visible;
+    }
 }

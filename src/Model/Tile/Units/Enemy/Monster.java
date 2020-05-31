@@ -10,4 +10,8 @@ public class Monster extends Enemy {
         super (type, x, y, name, pool, amount, attack, defense, board);
     }
 
+    @Override
+    public boolean isVisible() {
+        return true;
+    }
 }
