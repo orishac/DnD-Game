@@ -92,21 +92,19 @@ public abstract class Unit extends Tile implements Visitor{
     }
 
     public void moveUp() {
-        if(board.canMoveUp(this)) {
-           // interact(getTileOnLeft);
-        }
+       interaction(board.above(this));
     }
 
     public void moveDown() {
-        //if can move down interact with tile below
+        interaction(board.below(this));
     }
 
     public void moveLeft() {
-        //if can move left interact with tile on the left
+        interaction(board.onLeft(this));
     }
 
     public void moveRight() {
-        //if can move right interact with tile on the right
+        interaction(board.onRight(this));
     }
 }
 

@@ -5,7 +5,7 @@ import Model.Tile.Units.Visitor;
 public class Wall extends Tile {
 
 
-    public Wall(char type, int x, int y) {
+    public Wall( int x, int y) {
         super('#', x, y);
     }
 

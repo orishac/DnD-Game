@@ -2,8 +2,8 @@ package Model.Board;
 
 import Model.Tile.Position;
 import Model.Tile.Tile;
-import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Wall;
 
 import java.util.LinkedList;
 import java.util.List;
@@ -18,7 +18,7 @@ public class Board {
 
     public Board(int x,int j) {
         board = new Tile[x][j];
-        monsterList = new LinkedList<Monster>();
+        monsterList = new LinkedList<>();
     }
 
     public void add(Tile t) {
@@ -30,6 +30,7 @@ public class Board {
     public int xlength() {
         return board.length;
     }
+
     public int ylength() {
         return board[0].length;
     }
@@ -38,46 +39,7 @@ public class Board {
         return board;
     }
 
-    public boolean moveUnitUp(int x, int y) {
-        boolean moved = false;
-        Tile toSave = board[x-1][y];
-        if (toSave.toString()==".") {
-            board[x-1][y] = board[x][y];
-            board[x][y] = toSave;
-            moved = true;
-        }
-        return moved;
-    }
-    public boolean moveUnitDown(int x, int y) {
-        boolean moved = false;
-        Tile toSave = board[x+1][y];
-        if (toSave.toString()==".") {
-            board[x+1][y] = board[x][y];
-            board[x][y] = toSave;
-            moved = true;
-        }
-        return moved;
-    }
-    public boolean moveUnitLeft(int x, int y) {
-        boolean moved = false;
-        Tile toSave = board[x][y-1];
-        if (toSave.toString()==".") {
-            board[x][y-1] = board[x][y];
-            board[x][y] = toSave;
-            moved = true;
-        }
-        return moved;
-    }
-    public boolean moveUnitRight(int x, int y) {
-        boolean moved = false;
-        Tile toSave = board[x][y+1];
-        if (toSave.toString()==".") {
-            board[x][y+1] = board[x][y];
-            board[x][y] = toSave;
-            moved = true;
-        }
-        return moved;
-    }
+
     public void addMonster(Monster t) {
         monsterList.add(t);
     }
@@ -115,12 +77,44 @@ public class Board {
         return t.getYcoor()<board.length-1;
     }
 
-    public boolean canMoveLeft(Tile t) {
-        return t.getXcoor()>0
+    public boolean canMoveLeft(Tile t) { return t.getXcoor()>0; }
+
+    public boolean canMoveRight(Tile t){ return  t.getXcoor()<board[0].length-1; }
+
+    public Tile above(Tile t){
+        if(canMoveUp(t)) {
+            return board[t.getXcoor()][t.getYcoor()-1];
+        }
+        else {
+            return new Wall(t.getXcoor(),t.getYcoor()-1);
+        }
     }
 
-    public boolean canMoveRight(Tile t){
-        return t.getXcoor()<board[0].length-1;
+    public Tile below(Tile t){
+        if(canMoveDown(t)) {
+            return board[t.getXcoor()][t.getYcoor()+1];
+        }
+        else {
+            return new Wall(t.getXcoor(),t.getXcoor()+1);
+        }
+    }
+
+    public Tile onLeft(Tile t) {
+        if(canMoveLeft(t)) {
+            return board[t.getXcoor()-1][t.getYcoor()];
+        }
+        else {
+            return new Wall(t.getXcoor()-1,t.getYcoor());
+        }
+    }
+
+    public Tile onRight(Tile t) {
+        if(canMoveRight(t)) {
+            return board[t.getXcoor()+1][t.getYcoor()];
+        }
+        else {
+            return new Wall(t.getXcoor()+1,t.getYcoor());
+        }
     }
 }
 

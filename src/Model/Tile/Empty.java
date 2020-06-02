@@ -4,7 +4,7 @@ import Model.Tile.Units.Visitor;
 
 public class Empty extends Tile {
 
-    public Empty(char type, int x, int y) {
+    public Empty(int x, int y) {
         super('.', x, y);
     }
 
