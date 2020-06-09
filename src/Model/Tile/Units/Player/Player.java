@@ -2,8 +2,12 @@ package Model.Tile.Units.Player;
 
 
 import Model.Board.Board;
+import Model.Tile.Empty;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
+import Model.Tile.Units.Visitor;
+import Model.Tile.Wall;
 
 public abstract class Player extends Unit {
     protected Stat experience;
@@ -29,5 +33,40 @@ public abstract class Player extends Unit {
     }
 
     public abstract void castSpecialAbility();
+
+    @Override
+    public boolean acceptInteraction(Visitor visitor) {
+        return visitor.interact(this);
+    }
+
+    @Override
+    public boolean interact(Enemy enemy) {
+        enterCombat(this, enemy);
+        return false;
+    }
+
+    @Override
+    public boolean interact(Wall wall) {
+        return super.interact(wall);
+    }
+
+    @Override
+    public boolean interact(Player player) {
+        return false;
+    }
+
+    @Override
+    public boolean interact(Empty emptyTile) {
+        return super.interact(emptyTile);
+    }
+
+    public int getLevel() {
+        return level.getStatPoints();
+    }
+
+    public int getExp() {
+        return experience.getStatPoints();
+    }
+
 }
 

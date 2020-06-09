@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board.Board;
 import Model.Tile.Tile;
+import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Unit;
 import View.BoardView;
@@ -16,7 +17,7 @@ public class BoardController {
     private Board model;
     private BoardView view;
     private Player myPlayer;
-    private List<Unit> monsterList;
+    private List<Monster> monsterList;
 
     public BoardController (Board model, BoardView view, Player myPlayer, List monsterList) {
         this.model=model;
@@ -33,34 +34,49 @@ public class BoardController {
         Scanner myScanner = new Scanner(System.in);
         char chosen = myScanner.next().charAt(0);
         if (chosen == 'w') {
-            myPlayer.moveUnitUp();
-            moveMonsters();
+            myPlayer.moveUp();
         }
         if (chosen == 's') {
-            myPlayer.moveUnitDown();
-            moveMonsters();
+            myPlayer.moveDown();
         }
         if (chosen == 'a') {
-            myPlayer.moveUnitLeft();
-            moveMonsters();
+            myPlayer.moveLeft();
         }
         if (chosen == 'd') {
-            myPlayer.moveUnitRight();
-            moveMonsters();
+            myPlayer.moveRight();
         }
+        moveMonsters();
         view.PrintBoard(model.getBoard());
     }
     public void moveMonsters() {
-        for (Unit m : monsterList) {
-            int rnd = (int) (Math.random() * 4);
-            if (rnd == 0)
-                m.moveUnitUp();
-            if (rnd == 1)
-                m.moveUnitDown();
-            if (rnd == 2)
-                m.moveUnitLeft();
-            if (rnd == 3)
-                m.moveUnitRight();
+        for (Monster m : monsterList) {
+            if (m.isPlayerInRange(myPlayer) == true) {
+                int dx = m.getXcoor() - myPlayer.getXcoor();
+                int dy = m.getYcoor() - myPlayer.getYcoor();
+                if (Math.abs(dy) > Math.abs(dx)) {
+                    if (dy > 0) {
+                        m.moveLeft();
+                    } else {
+                        m.moveRight();
+                    }
+                } else {
+                    if (dx > 0) {
+                        m.moveUp();
+                    } else {
+                        m.moveDown();
+                    }
+                }
+            } else {
+                int rnd = (int) (Math.random() * 4);
+                if (rnd == 0)
+                    m.moveUp();
+                if (rnd == 1)
+                    m.moveDown();
+                if (rnd == 2)
+                    m.moveLeft();
+                if (rnd == 3)
+                    m.moveRight();
+            }
         }
     }
 

@@ -64,13 +64,13 @@ public class Board {
         Position p1=t1.getPosition();
         Position p2=t2.getPosition();
         board[t1.getXcoor()][t1.getYcoor()]=t2;
-        board[t2.getXcoor()][t2.getXcoor()]=t1;
+        board[t2.getXcoor()][t2.getYcoor()]=t1;
         t1.setPosition(p2);
         t2.setPosition(p1);
     }
 
     public boolean canMoveUp(Tile t){
-        return t.getYcoor()>0;
+        return t.getXcoor()>0;
     }
 
     public boolean canMoveDown(Tile t) {
@@ -83,24 +83,6 @@ public class Board {
 
     public Tile above(Tile t){
         if(canMoveUp(t)) {
-            return board[t.getXcoor()][t.getYcoor()-1];
-        }
-        else {
-            return new Wall(t.getXcoor(),t.getYcoor()-1);
-        }
-    }
-
-    public Tile below(Tile t){
-        if(canMoveDown(t)) {
-            return board[t.getXcoor()][t.getYcoor()+1];
-        }
-        else {
-            return new Wall(t.getXcoor(),t.getXcoor()+1);
-        }
-    }
-
-    public Tile onLeft(Tile t) {
-        if(canMoveLeft(t)) {
             return board[t.getXcoor()-1][t.getYcoor()];
         }
         else {
@@ -108,13 +90,35 @@ public class Board {
         }
     }
 
-    public Tile onRight(Tile t) {
-        if(canMoveRight(t)) {
+    public Tile below(Tile t){
+        if(canMoveDown(t)) {
             return board[t.getXcoor()+1][t.getYcoor()];
         }
         else {
-            return new Wall(t.getXcoor()+1,t.getYcoor());
+            return new Wall(t.getXcoor()+1,t.getXcoor());
         }
+    }
+
+    public Tile onLeft(Tile t) {
+        if(canMoveLeft(t)) {
+            return board[t.getXcoor()][t.getYcoor()-1];
+        }
+        else {
+            return new Wall(t.getXcoor(),t.getYcoor()-1);
+        }
+    }
+
+    public Tile onRight(Tile t) {
+        if(canMoveRight(t)) {
+            return board[t.getXcoor()+1][t.getYcoor()+1];
+        }
+        else {
+            return new Wall(t.getXcoor(),t.getYcoor()+1);
+        }
+    }
+
+    public Tile getPlayer() {
+        return player;
     }
 }
 

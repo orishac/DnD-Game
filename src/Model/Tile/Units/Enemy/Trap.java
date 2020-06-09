@@ -26,7 +26,8 @@ public class Trap extends Enemy {
     }
 
     @Override
-    public void acceptInteraction(Visitor visitor) {
-        visitor.interact(this);
+    public boolean acceptInteraction(Visitor visitor) {
+        return visitor.interact(this);
     }
+
 }

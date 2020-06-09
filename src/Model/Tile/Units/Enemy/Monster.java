@@ -1,7 +1,11 @@
 package Model.Tile.Units.Enemy;
 
 import Model.Board.Board;
+import Model.Tile.Empty;
+import Model.Tile.Range;
+import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Visitor;
+import Model.Tile.Wall;
 
 public class Monster extends Enemy {
 
@@ -16,8 +20,8 @@ public class Monster extends Enemy {
         return true;
     }
 
-    @Override
-    public void acceptInteraction(Visitor visitor) {
-        visitor.interact(this);
+    public boolean isPlayerInRange(Player myPlayer) {
+        return (getRange(this, myPlayer)<visionRange);
     }
+
 }

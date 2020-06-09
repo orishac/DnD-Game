@@ -15,9 +15,10 @@ public class Warrior extends Player {
     private Stat remainingCooldown;
 
 
-    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
+    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, int cooldown, Board board) {
         super(x, y ,name, pool, amount, attack, defense,board);
-        remainingCooldown.setStatPoints(0);
+        abilityCooldown=new Stat(cooldown);
+        remainingCooldown=new Stat(0);
     }
 
     public void levelUp() {
@@ -46,7 +47,15 @@ public class Warrior extends Player {
     }
 
     @Override
-    public void acceptInteraction(Visitor visitor) {
-        visitor.interact(this);
+    public boolean acceptInteraction(Visitor visitor) {
+        return visitor.interact(this);
+    }
+
+    public int getAbilityCooldown() {
+        return abilityCooldown.getStatPoints();
+    }
+
+    public int getRemainingCooldown() {
+        return remainingCooldown.getStatPoints();
     }
 }

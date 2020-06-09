@@ -5,7 +5,7 @@ import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visited;
 import Model.Tile.Units.Visitor;
 
-public abstract class Tile implements Visited {
+public abstract class Tile extends Range implements Visited, Visitor {
     private char tile;
     private Position position;
 
@@ -29,13 +29,16 @@ public abstract class Tile implements Visited {
     }
 
     public Position getPosition() {
-        return new Position(getXcoor(),getXcoor());
+        return new Position(getXcoor(),getYcoor());
     }
 
     public void setPosition(Position p) {
         position=p;
     }
 
-    public abstract void acceptInteraction(Visitor visitor);
+    public String toString(){
+        return tile+"";
+    }
+
 
 }
