@@ -1,44 +1,61 @@
 package Model.Tile.Units.Player;
 
 import Model.Board.Board;
+import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.Stat;
+import Model.Tile.Units.Visitor;
+
+import java.util.Random;
+
+import java.util.List;
 
 public class Warrior extends Player {
 
-    private int abilityCooldown;
-    private int remainingCooldown;
+    private Stat abilityCooldown;
+    private Stat remainingCooldown;
 
 
-    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
-        super(x, y ,name, pool, amount, attack, defense, board);
-        remainingCooldown = 0;
+    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, int cooldown, Board board) {
+        super(x, y ,name, pool, amount, attack, defense,board);
+        abilityCooldown=new Stat(cooldown);
+        remainingCooldown=new Stat(0);
     }
 
     public void levelUp() {
         super.levelUp();
-        remainingCooldown = 0;
-        setHealthPool(healthPool + (5 * level));
-        setAttackPoints(attackPoints + (2 * level));
-        setDefensePoints(defensePoints + (1 * level));
+        remainingCooldown.setStatPoints(0);
+        setHealthPool(health.getPool() + (5 * level.getStatPoints()));
+        setAttackPoints(attack.getStatPoints() + (2 * level.getStatPoints()));
+        setDefensePoints(defense.getStatPoints() + (level.getStatPoints()));
     }
 
     @Override
     public void castSpecialAbility() {
-
-    }
-
-    public void abilityCast() {
-        if (remainingCooldown > 0);
-            //throw new Exception("there is still remaining Cooldown");
+        if(remainingCooldown.getStatPoints()>0) {
+            //need to generate an error message.
+        }
         else {
-            remainingCooldown = abilityCooldown;
-            healthAmount = getMin(healthAmount + (10 * defensePoints), healthPool);
-           // -Randomly hits one enemy within range< 3 for an amount equals to 10 % of the warrior’s
-            //health pool
+            remainingCooldown.setStatPoints(abilityCooldown.getStatPoints());
+            health.setAmount(Math.min(health.getAmount()+10*defense.getStatPoints(),health.getPool()));
+            List<Monster> inRangeOf3=board.getMonstersInRange(3);
+            Random rndGenerator=new Random();
+            int randomIndex=rndGenerator.nextInt(inRangeOf3.size());
+            Monster randomMonster=inRangeOf3.get(randomIndex);
+            randomMonster.setHealthAmount(randomMonster.getHealthAmount()-getHealthAmount()/10);
+            setHealthAmount(getHealthAmount()+10*defense.getStatPoints());
         }
     }
-    private int getMin (int a, int b) {
-        if (a > b)
-            return b;
-        return a;
+
+    @Override
+    public boolean acceptInteraction(Visitor visitor) {
+        return visitor.interact(this);
+    }
+
+    public int getAbilityCooldown() {
+        return abilityCooldown.getStatPoints();
+    }
+
+    public int getRemainingCooldown() {
+        return remainingCooldown.getStatPoints();
     }
 }

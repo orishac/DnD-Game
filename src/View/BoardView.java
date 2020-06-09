@@ -1,6 +1,7 @@
 package View;
 
 import Model.Tile.Tile;
+import Model.Tile.Units.Player.Player;
 
 public class BoardView {
 
@@ -14,4 +15,5 @@ public class BoardView {
             System.out.print("\n");
         }
     }
+
 }

@@ -52,11 +52,11 @@ public class Gameplay {
                 for (int j = 0; j < model.ylength(); j++) {
                     current = line.charAt(j);
                     if (current == '.') {
-                        Tile empty = new Empty('.', i, j);
+                        Tile empty = new Empty( i, j);
                         model.add(empty);
                     }
                     if (current == '#') {
-                        Tile wall = new Wall('#', i, j);
+                        Tile wall = new Wall( i, j);
                         model.add(wall);
                     }
                     if (current == 's') {
@@ -128,39 +128,39 @@ public class Gameplay {
                         x = i;
                         y = j;
                         if (chosen == 1) {
-                            myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, model);
-                            System.out.println("You have selected:\n" +
-                                    "Jon Snow");
+                            myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model);
+                            System.out.print("You have selected:\n" +
+                                    "Jon Snow \n");
                             model.add(myPlayer);
                         }
                         if (chosen == 2) {
-                            myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6,model);
-                            System.out.println("You have selected:\n" +
-                                    "The Hound");
+                            myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model);
+                            System.out.print("You have selected:\n" +
+                                    "The Hound \n");
                             model.add(myPlayer);
                         }
                         if (chosen == 3) {
                             myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, model);
-                            System.out.println("You have selected:\n" +
-                                    "Melisandre");
+                            System.out.print("You have selected:\n" +
+                                    "Melisandre \n");
                             model.add(myPlayer);
                         }
                         if (chosen == 4) {
                             myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, model);
-                            System.out.println("You have selected:\n" +
-                                    "Thoros of Myr");
+                            System.out.print("You have selected:\n" +
+                                    "Thoros of Myr \n");
                             model.add(myPlayer);
                         }
                         if (chosen == 5) {
-                            myPlayer = new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, model);
-                            System.out.println("You have selected:\n" +
-                                    "Arya Stark");
+                            myPlayer = new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model);
+                            System.out.print("You have selected:\n" +
+                                    "Arya Stark \n");
                             model.add(myPlayer);
                         }
                         if (chosen == 6) {
-                            myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3, model);
-                            System.out.println("You have selected:\n" +
-                                    "Bronn");
+                            myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3,50, model);
+                            System.out.print("You have selected:\n" +
+                                    "Bronn \n");
                             model.add(myPlayer);
                         }
                     }

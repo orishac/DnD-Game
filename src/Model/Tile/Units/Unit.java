@@ -1,70 +1,130 @@
 package Model.Tile.Units;
-
 import Model.Board.Board;
+import Model.Tile.Empty;
 import Model.Tile.Tile;
+import Model.Tile.Units.Enemy.Enemy;
+import Model.Tile.Units.Enemy.Trap;
+import Model.Tile.Units.Player.Player;
+import Model.Tile.Wall;
+import java.util.Random;
 
-public abstract class Unit extends Tile {
+public abstract class Unit extends Tile implements Visitor, Visited {
 
     protected String name;
-    protected int healthPool;
-    protected int healthAmount;
-    protected int attackPoints;
-    protected int defensePoints;
+    protected Resource health;
+    protected Stat defense;
+    protected Stat attack;
     protected Board board;
 
-    public Unit (char type, int x, int y, String name, int pool, int amount, int attack , int defense, Board board ) {
-        super(type,x,y);
-        this.name= name;
-        healthPool=pool;
-        healthAmount=amount;
-        attackPoints=attack;
-        defensePoints=defense;
+    public Unit(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
+        super(type, x, y);
+        this.name = name;
+        this.health = new Resource(pool, amount);
+        this.attack = new Stat(attack);
+        this.defense = new Stat(defense);
         this.board = board;
     }
 
-    public void setHealthPool(int pool){
-        healthPool=pool;
-
-    }
-    public void setHealthAmount(int health){
-        healthAmount=health;
-
-    }
-    public void setAttackPoints(int attack){
-        attackPoints=attack;
-
-    }
-    public void setDefensePoints(int defense){
-        defensePoints=defense;
+    public void setHealthPool(int pool) {
+        health.setPool(pool);
     }
 
-    public void moveUnitUp() {
-        if (board.moveUnitUp(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor() - 1, getYcoor());
-        }
-    }
-    public void moveUnitDown() {
-        if(board.moveUnitDown(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor() + 1, getYcoor());
-        }
-    }
-    public void moveUnitLeft() {
-        if(board.moveUnitLeft(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor(), getYcoor() - 1);
-        }
-    }
-    public void moveUnitRight() {
-        if(board.moveUnitRight(getXcoor(),getYcoor())) {
-            super.setCoor(getXcoor(), getYcoor() + 1);
+    public void setHealthAmount(int newHealth) {
+        health.setAmount(newHealth);
+        if (health.getAmount() == 0) {
+            //need to remove this unit from the board.
         }
     }
 
-    public String getName(){
+    public void setAttackPoints(int attack) {
+        this.attack.setStatPoints(attack);
+    }
+
+    public void setDefensePoints(int defense) {
+        this.defense.setStatPoints(defense);
+    }
+
+    public int getHealthAmount() {
+        return health.getAmount();
+    }
+
+    public int getHealthPool() {
+        return health.getPool();
+    }
+
+    public int getDefensePoints() {
+        return defense.getStatPoints();
+    }
+
+    public int getAttackPoints() {
+        return attack.getStatPoints();
+    }
+
+    public boolean isAlive() {
+        return getHealthAmount() > 0;
+    }
+
+    public String getName() {
         return name;
     }
 
-    public String toString() {
-        return getTile()+"";
+    public boolean interact(Empty emptyTile) {
+        return true;
     }
 
+    public boolean interact(Wall wall) {
+        //do nothing,the unit can't move(generate a message?)
+        return false;
+    }
+
+    public boolean interact(Enemy enemy) {
+        enterCombat(this, enemy);
+        return false;
+    }
+
+    public boolean interact(Player player) {
+        enterCombat(this, player);
+        return false;
+    }
+
+
+    public boolean interaction(Tile tile) {
+        return tile.acceptInteraction(this);
+    }
+
+    public void enterCombat(Unit attacker, Unit defender) {
+        Random rnd = new Random();
+        int attack = rnd.nextInt(attacker.getAttackPoints() + 1);
+        int defense = rnd.nextInt(defender.getDefensePoints() + 1);
+        int damage = attack - defense;
+        if (damage > 0) {
+            defender.setHealthAmount(defender.getHealthAmount() - damage);
+        }
+    }
+
+    public void moveUp() {
+        if (interaction(board.above(this)) == true) {
+            board.switchPlaces(this, board.above(this));
+        }
+    }
+
+    public void moveDown() {
+        if (interaction(board.below(this)) == true) {
+            board.switchPlaces(this, board.below(this));
+        }
+    }
+
+    public void moveLeft() {
+        if (interaction(board.onLeft(this)) == true) {
+            board.switchPlaces(this, board.onLeft(this));
+        }
+    }
+
+    public void moveRight() {
+        if (interaction(board.onRight(this)) == true) {
+            board.switchPlaces(this, board.onRight(this));
+        }
+    }
 }
+
+
