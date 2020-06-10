@@ -3,7 +3,6 @@ import Model.Board.Board;
 import Model.Tile.Empty;
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Enemy;
-import Model.Tile.Units.Enemy.Trap;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Wall;
 import View.BoardView;
@@ -11,7 +10,7 @@ import View.BoardView;
 import java.util.Random;
 
 public abstract class Unit extends Tile implements Visitor, Visited {
-
+//need to make another enterCombat: one for when the attack amount is random and one for when it isn't.
     protected String name;
     protected Resource health;
     protected Stat defense;

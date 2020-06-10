@@ -17,11 +17,6 @@ public class Boss extends Monster implements HeroicUnit {
     }
 
     @Override
-    public boolean isVisible() {
-        return true;
-    }
-
-    @Override
     public void onEnemyTurn() {
         if(board.rangeFromPlayer(this)<visionRange.getStatPoints()) {
             if(combatTicks.getStatPoints()==abilityFrequency.getStatPoints()) {
