@@ -50,4 +50,7 @@ public abstract class Enemy extends Unit {
 
     public abstract void onEnemyTurn();
 
+    public  void removeFromBoard() {
+        board.removeEnemy(this);
+    }
 }

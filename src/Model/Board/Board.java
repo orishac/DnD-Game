@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 public class Board {
 
     private Tile[][] board;
-    private List<Monster> monsterList;
+    private List<Monster> monsterList;//need to change monsterList to EnemyList.
     private Tile player;
 
     public Board(int x,int j) {
@@ -150,6 +150,14 @@ public class Board {
             }
         }
         return closestMonster;
+    }
+
+    public void removeEnemy(Enemy enemy) {
+        monsterList.remove(enemy);
+    }
+
+    public void removePlayer() {
+        player=null;
     }
 }
 

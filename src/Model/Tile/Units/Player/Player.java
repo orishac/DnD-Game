@@ -67,5 +67,10 @@ public abstract class Player extends Unit implements HeroicUnit {
         return experience.getStatPoints();
     }
 
+    public void removeFromBoard() {
+        //need to stop game and to start over
+        board.removePlayer();
+    }
+
 }
 

@@ -32,7 +32,7 @@ public abstract class Unit extends Tile implements Visitor, Visited {
     public void setHealthAmount(int newHealth) {
         health.setAmount(newHealth);
         if (health.getAmount() == 0) {
-            //need to remove this unit from the board.
+            removeFromBoard();
         }
     }
 
@@ -103,28 +103,30 @@ public abstract class Unit extends Tile implements Visitor, Visited {
     }
 
     public void moveUp() {
-        if (interaction(board.above(this)) == true) {
+        if (interaction(board.above(this))) {
             board.switchPlaces(this, board.above(this));
         }
     }
 
     public void moveDown() {
-        if (interaction(board.below(this)) == true) {
+        if (interaction(board.below(this))) {
             board.switchPlaces(this, board.below(this));
         }
     }
 
     public void moveLeft() {
-        if (interaction(board.onLeft(this)) == true) {
+        if (interaction(board.onLeft(this))) {
             board.switchPlaces(this, board.onLeft(this));
         }
     }
 
     public void moveRight() {
-        if (interaction(board.onRight(this)) == true) {
+        if (interaction(board.onRight(this))) {
             board.switchPlaces(this, board.onRight(this));
         }
     }
+
+    public abstract void removeFromBoard();
 }
 
 
