@@ -2,6 +2,7 @@ package Model.Tile.Units.Player;
 
 import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Visitor;
 import View.BoardView;
@@ -10,7 +11,7 @@ import java.util.Random;
 
 import java.util.List;
 
-public class Warrior extends Player {
+public class Warrior extends Player implements HeroicUnit {
 
     private Stat abilityCooldown;
     private Stat remainingCooldown;

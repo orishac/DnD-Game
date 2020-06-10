@@ -2,13 +2,14 @@ package Model.Tile.Units.Player;
 
 import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
 import View.BoardView;
 
 import java.util.List;
 import java.util.Random;
 
-public class Hunter extends Player{
+public class Hunter extends Player implements HeroicUnit {
 
     private Stat range;
     private Stat arrowsCount;

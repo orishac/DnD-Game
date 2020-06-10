@@ -2,6 +2,7 @@ package Model.Tile.Units.Player;
 
 import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Visitor;
 import View.BoardView;
@@ -9,7 +10,7 @@ import View.BoardView;
 import java.util.List;
 import java.util.Random;
 
-public class Rogue extends Player {
+public class Rogue extends Player implements HeroicUnit {
 
     private Stat cost;
     private Stat currentEnergy;

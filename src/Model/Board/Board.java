@@ -2,6 +2,7 @@ package Model.Board;
 
 import Model.Tile.Position;
 import Model.Tile.Tile;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Wall;
 
@@ -129,12 +130,12 @@ public class Board {
         return range(player,enemy);
     }
 
-    public int getXDifferenceFromPlayer(Monster monster) {
-        return monster.getXcoor()-player.getXcoor();
+    public int getXDifferenceFromPlayer(Enemy e) {
+        return e.getXcoor()-player.getXcoor();
     }
 
-    public int getYDifferenceFromPlayer(Monster monster) {
-        return monster.getYcoor()-player.getYcoor();
+    public int getYDifferenceFromPlayer(Enemy e) {
+        return e.getYcoor()-player.getYcoor();
     }
 
     public Monster getClosestEnemy(List<Monster> monsterList) {

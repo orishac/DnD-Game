@@ -4,13 +4,14 @@ package Model.Tile.Units.Player;
 import Model.Board.Board;
 import Model.Tile.Empty;
 import Model.Tile.Units.Enemy.Enemy;
+import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
 import View.BoardView;
 
-public abstract class Player extends Unit {
+public abstract class Player extends Unit implements HeroicUnit {
     protected Stat experience;
     protected Stat level;
 
@@ -32,8 +33,6 @@ public abstract class Player extends Unit {
     public String toString(){
         return "@";
     }
-
-    public abstract void castSpecialAbility();
 
     @Override
     public boolean acceptInteraction(Visitor visitor) {
