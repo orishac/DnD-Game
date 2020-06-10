@@ -6,8 +6,8 @@ import Model.Tile.Units.Player.Player;
 import Model.Tile.Wall;
 
 public interface Visitor {
-    public void interact(Empty emptyTile);
-    public void interact(Wall wall);
-    public void interact(Enemy enemy);
-    public void interact(Player player);
+     boolean interact(Empty emptyTile);
+     boolean interact(Wall wall);
+     boolean interact(Enemy enemy);
+     boolean interact(Player player);
 }
