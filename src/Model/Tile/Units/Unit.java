@@ -6,6 +6,8 @@ import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Trap;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Wall;
+import View.BoardView;
+
 import java.util.Random;
 
 public abstract class Unit extends Tile implements Visitor, Visited {
@@ -15,14 +17,16 @@ public abstract class Unit extends Tile implements Visitor, Visited {
     protected Stat defense;
     protected Stat attack;
     protected Board board;
+    protected BoardView view;
 
-    public Unit(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
+    public Unit(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board, BoardView view) {
         super(type, x, y);
         this.name = name;
         this.health = new Resource(pool, amount);
         this.attack = new Stat(attack);
         this.defense = new Stat(defense);
         this.board = board;
+        this.view=view;
     }
 
     public void setHealthPool(int pool) {
@@ -99,6 +103,7 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         int damage = attack - defense;
         if (damage > 0) {
             defender.setHealthAmount(defender.getHealthAmount() - damage);
+            view.PrintCombatView(attacker,defender,attack,defense,damage);
         }
     }
 

@@ -4,6 +4,7 @@ import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Visitor;
+import View.BoardView;
 
 import java.util.Random;
 
@@ -15,8 +16,8 @@ public class Warrior extends Player {
     private Stat remainingCooldown;
 
 
-    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, int cooldown, Board board) {
-        super(x, y ,name, pool, amount, attack, defense,board);
+    public Warrior(int x, int y, String name, int pool, int amount, int attack, int defense, int cooldown, Board board, BoardView view) {
+        super(x, y ,name, pool, amount, attack, defense,board, view);
         abilityCooldown=new Stat(cooldown);
         remainingCooldown=new Stat(0);
     }

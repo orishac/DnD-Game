@@ -50,7 +50,7 @@ public class BoardController {
     }
     public void moveMonsters() {
         for (Monster m : monsterList) {
-            if (m.isPlayerInRange(myPlayer) == true) {
+            if (model.rangeFromPlayer(m) < m.getVisionRange()) {
                 int dx = m.getXcoor() - myPlayer.getXcoor();
                 int dy = m.getYcoor() - myPlayer.getYcoor();
                 if (Math.abs(dy) > Math.abs(dx)) {

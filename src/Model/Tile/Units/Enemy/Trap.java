@@ -2,6 +2,7 @@ package Model.Tile.Units.Enemy;
 
 import Model.Board.Board;
 import Model.Tile.Units.Visitor;
+import View.BoardView;
 
 public class Trap extends Enemy {
 
@@ -11,9 +12,9 @@ public class Trap extends Enemy {
     private boolean visible;
 
 
-    public Trap(char type, int x, int y, String name, int pool, int amount, int attack, int defense,  Board board, int visibilityTime,
-                int invisibilityTime) {
-        super(type, x, y, name, pool, amount , attack , defense, board);
+    public Trap(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board, int visibilityTime,
+                int invisibilityTime, BoardView view) {
+        super(type, x, y, name, pool, amount , attack , defense, board, view);
         this.visibilityTime=visibilityTime;
         this.invisibilityTime=invisibilityTime;
         ticksCount = 0;

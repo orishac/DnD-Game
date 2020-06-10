@@ -6,13 +6,15 @@ import Model.Tile.Range;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
+import View.BoardView;
 
 public class Monster extends Enemy {
 
     private int visionRange;
 
-    public Monster( char type, int x, int y, String name, int pool, int amount , int attack , int defense, int visionRange, Board board) {
-        super (type, x, y, name, pool, amount, attack, defense, board);
+    public Monster(char type, int x, int y, String name, int pool, int amount , int attack , int defense, int visionRange, Board board, BoardView view) {
+        super (type, x, y, name, pool, amount, attack, defense, board, view);
+        this.visionRange=visionRange;
     }
 
     @Override
@@ -20,8 +22,7 @@ public class Monster extends Enemy {
         return true;
     }
 
-    public void onEnemyTurn()
-    {
+    public void onEnemyTurn() {
         if(board.rangeFromPlayer(this)<visionRange)
         {
             int dx=board.getXDifferenceFromPlayer(this);
@@ -43,5 +44,9 @@ public class Monster extends Enemy {
         {
 
         }
+    }
+
+    public int getVisionRange(){
+        return visionRange;
     }
 }

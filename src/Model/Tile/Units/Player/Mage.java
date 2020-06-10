@@ -5,6 +5,7 @@ import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Resource;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Visitor;
+import View.BoardView;
 
 import java.util.Random;
 import java.util.List;
@@ -17,8 +18,8 @@ public class Mage extends Player {
     private Stat hitsCount;
     private Stat abilityRange;
 
-    public Mage(int x, int y, String name, int pool, int amount, int attack, int defense, Board board) {
-        super(x, y, name, pool, amount, attack, defense, board);
+    public Mage(int x, int y, String name, int pool, int amount, int attack, int defense, Board board, BoardView view) {
+        super(x, y, name, pool, amount, attack, defense, board, view);
     }
 
     public void levelUp() {
