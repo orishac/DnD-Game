@@ -30,4 +30,19 @@ public class Trap extends Enemy {
         return visitor.interact(this);
     }
 
+    public void onEnemyTurn()
+    {
+        visible=ticksCount<visibilityTime;
+        if(ticksCount==visibilityTime+invisibilityTime) {
+            ticksCount=0;
+        }
+        else {
+            ticksCount++;
+            if(board.rangeFromPlayer(this)<2)
+            {
+                interaction(board.getPlayer());
+            }
+        }
+    }
+
 }

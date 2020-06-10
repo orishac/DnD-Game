@@ -120,5 +120,35 @@ public class Board {
     public Tile getPlayer() {
         return player;
     }
+
+    public double rangeFromPlayer(Tile enemy) {
+        return range(player,enemy);
+    }
+
+    public int getXDifferenceFromPlayer(Monster monster) {
+        return monster.getXcoor()-player.getXcoor();
+    }
+
+    public int getYDifferenceFromPlayer(Monster monster) {
+        return monster.getYcoor()-player.getYcoor();
+    }
+
+    public Monster getClosestEnemy(List<Monster> monsterList) {
+        double minRange=-1;
+        Monster closestMonster=null;
+        for(Monster m:monsterList)
+        {
+            if(minRange==-1) {
+                minRange=range(m,player);
+                closestMonster=m;
+            }
+            else if(range(m,player)<minRange)
+            {
+                minRange=range(m,player);
+                closestMonster=m;
+            }
+        }
+        return closestMonster;
+    }
 }
 

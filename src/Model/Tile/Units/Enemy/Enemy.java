@@ -22,7 +22,6 @@ public abstract class Enemy extends Unit {
         return super.toString();
     }
 
-
     @Override
     public boolean acceptInteraction(Visitor visitor) {
         return visitor.interact(this);
@@ -48,5 +47,7 @@ public abstract class Enemy extends Unit {
     public boolean interact(Enemy enemy) {
         return false;
     }
+
+    public abstract void onEnemyTurn();
 
 }
