@@ -132,5 +132,23 @@ public class Board {
     public int getYDifferenceFromPlayer(Monster monster) {
         return monster.getYcoor()-player.getYcoor();
     }
+
+    public Monster getClosestEnemy(List<Monster> monsterList) {
+        double minRange=-1;
+        Monster closestMonster=null;
+        for(Monster m:monsterList)
+        {
+            if(minRange==-1) {
+                minRange=range(m,player);
+                closestMonster=m;
+            }
+            else if(range(m,player)<minRange)
+            {
+                minRange=range(m,player);
+                closestMonster=m;
+            }
+        }
+        return closestMonster;
+    }
 }
 
