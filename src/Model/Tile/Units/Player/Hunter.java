@@ -4,6 +4,7 @@ import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
+import View.BoardView;
 
 import java.util.List;
 import java.util.Random;
@@ -14,9 +15,9 @@ public class Hunter extends Player implements HeroicUnit {
     private Stat arrowsCount;
     private Stat ticksCount;
 
-    public Hunter(int x, int y, String name, int pool, int amount, int attack, int defense, Board board,int range)
+    public Hunter(int x, int y, String name, int pool, int amount, int attack, int defense, Board board, int range, BoardView view)
     {
-        super(x,y,name,pool,amount,attack,defense,board);
+        super(x,y,name,pool,amount,attack,defense,board, view);
         this.range=new Stat(range);
     }
 

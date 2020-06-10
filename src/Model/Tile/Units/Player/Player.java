@@ -9,13 +9,14 @@ import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
+import View.BoardView;
 
 public abstract class Player extends Unit implements HeroicUnit {
     protected Stat experience;
     protected Stat level;
 
-    public Player(int x, int y, String name, int pool, int amount, int attack, int defense,Board board) {
-        super('@',x,y, name, pool, amount, attack, defense,board);
+    public Player(int x, int y, String name, int pool, int amount, int attack, int defense, Board board, BoardView view) {
+        super('@',x,y, name, pool, amount, attack, defense,board, view);
         experience=new Stat(0);
         level=new Stat(1);
     }

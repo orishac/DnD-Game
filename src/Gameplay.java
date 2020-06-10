@@ -46,6 +46,7 @@ public class Gameplay {
             char current;
             int i = 0;
             Board model = new Board(x, y);
+            BoardView view = new BoardView();
             List<Tile> monsterlist = new LinkedList<>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
@@ -60,114 +61,119 @@ public class Gameplay {
                         model.add(wall);
                     }
                     if (current == 's') {
-                        Tile monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, model);
+                        Tile monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'k') {
-                        Tile monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, model);
+                        Tile monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'q') {
-                        Tile monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, model);
+                        Tile monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'z') {
-                        Tile monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, model);
+                        Tile monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'b') {
-                        Tile monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, model);
+                        Tile monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'g') {
-                        Tile monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, model);
+                        Tile monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'w') {
-                        Tile monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, model);
+                        Tile monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'M') {
-                        Tile monster = new Monster('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, 6, model);
+                        Tile monster = new Monster('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, 6, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'C') {
-                        Tile monster = new Monster('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, 1, model);
+                        Tile monster = new Monster('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, 1, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'K') {
-                        Tile monster = new Monster('K', i, j, "Night’s King", 5000, 5000 , 300 , 150, 8, model);
+                        Tile monster = new Monster('K', i, j, "Night’s King", 5000, 5000 , 300 , 150, 8, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'B') {
                         Tile trap = new Trap('B', i, j, "Bonus Trap", 1, 1, 1, 1,  model , 1,
-                        5);
+                        5, view);
                         model.add(trap);
                     }
                     if (current == 'Q') {
                         Tile trap = new Trap('Q', i, j, "Queen’s Trap", 250, 250, 50, 10,  model , 3,
-                                7);
+                                7, view);
                         model.add(trap);
                     }
                     if (current == 'D') {
                         Tile trap = new Trap('D', i, j, "Death Trap", 500, 500, 100, 20,  model , 1,
-                                10);
+                                10, view);
                         model.add(trap);
                     }
                     if (current == '@') {
                         x = i;
                         y = j;
                         if (chosen == 1) {
-                            myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model);
+                            myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model, view);
                             System.out.print("You have selected:\n" +
                                     "Jon Snow \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                         if (chosen == 2) {
-                            myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model);
+                            myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model, view);
                             System.out.print("You have selected:\n" +
                                     "The Hound \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                         if (chosen == 3) {
-                            myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, model);
+                            myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, model, view);
                             System.out.print("You have selected:\n" +
                                     "Melisandre \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                         if (chosen == 4) {
-                            myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, model);
+                            myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, model, view);
                             System.out.print("You have selected:\n" +
                                     "Thoros of Myr \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                         if (chosen == 5) {
-                            myPlayer = new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model);
+                            myPlayer = new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model, view);
                             System.out.print("You have selected:\n" +
                                     "Arya Stark \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                         if (chosen == 6) {
-                            myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3,50, model);
+                            myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3,50, model, view);
                             System.out.print("You have selected:\n" +
                                     "Bronn \n");
                             model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                     }
                 }
                 i = i + 1;
             }
-            BoardView view = new BoardView();
             BoardController controller = new BoardController(model, view, myPlayer, monsterlist);
             controller.updateView();
             boolean keepRunning = false;

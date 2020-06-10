@@ -40,6 +40,10 @@ public class Board {
         return board;
     }
 
+    public void setPlayer(Tile myPlayer){
+        player=myPlayer;
+    }
+
 
     public void addMonster(Monster t) {
         monsterList.add(t);
@@ -58,7 +62,7 @@ public class Board {
     }
 
     public double range(Tile t1, Tile t2){
-        return Math.sqrt(Math.pow(t1.getXcoor()-t2.getXcoor(),2)+Math.pow(t1.getYcoor()-t2.getYcoor(),2));
+        return Math.sqrt((Math.pow((t1.getXcoor())-(t2.getXcoor()),2))+(Math.pow((t1.getYcoor())-(t2.getYcoor()),2)));
     }
 
     public void switchPlaces(Tile t1,Tile t2) {
@@ -75,12 +79,12 @@ public class Board {
     }
 
     public boolean canMoveDown(Tile t) {
-        return t.getYcoor()<board.length-1;
+        return t.getXcoor()<board.length-1;
     }
 
-    public boolean canMoveLeft(Tile t) { return t.getXcoor()>0; }
+    public boolean canMoveLeft(Tile t) { return t.getYcoor()>0; }
 
-    public boolean canMoveRight(Tile t){ return  t.getXcoor()<board[0].length-1; }
+    public boolean canMoveRight(Tile t){ return  t.getYcoor()<board[0].length-1; }
 
     public Tile above(Tile t){
         if(canMoveUp(t)) {
@@ -96,7 +100,7 @@ public class Board {
             return board[t.getXcoor()+1][t.getYcoor()];
         }
         else {
-            return new Wall(t.getXcoor()+1,t.getXcoor());
+            return new Wall(t.getXcoor()+1,t.getYcoor());
         }
     }
 
@@ -111,7 +115,7 @@ public class Board {
 
     public Tile onRight(Tile t) {
         if(canMoveRight(t)) {
-            return board[t.getXcoor()+1][t.getYcoor()+1];
+            return board[t.getXcoor()][t.getYcoor()+1];
         }
         else {
             return new Wall(t.getXcoor(),t.getYcoor()+1);

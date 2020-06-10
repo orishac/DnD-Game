@@ -7,13 +7,14 @@ import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
+import View.BoardView;
 
 public abstract class Enemy extends Unit {
 
     private int experience;
 
-    public Enemy( char type, int x, int y, String name, int pool, int amount , int attack , int defense, Board board) {
-        super(type, x, y, name, pool, amount, attack, defense, board);
+    public Enemy(char type, int x, int y, String name, int pool, int amount , int attack , int defense, Board board, BoardView view) {
+        super(type, x, y, name, pool, amount, attack, defense, board, view);
     }
 
     public abstract boolean isVisible();
