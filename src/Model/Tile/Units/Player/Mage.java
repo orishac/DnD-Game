@@ -2,6 +2,7 @@ package Model.Tile.Units.Player;
 
 import Model.Board.Board;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Resource;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Visitor;
@@ -9,7 +10,7 @@ import Model.Tile.Units.Visitor;
 import java.util.Random;
 import java.util.List;
 
-public class Mage extends Player {
+public class Mage extends Player implements HeroicUnit {
 
     private Resource mana;
     private Stat manaCost;

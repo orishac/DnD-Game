@@ -7,6 +7,8 @@ import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
 
+import java.util.Random;
+
 public class Monster extends Enemy {
 
     private int visionRange;
@@ -41,7 +43,24 @@ public class Monster extends Enemy {
         }
         else
         {
+            makeRandomMovement();
+        }
+    }
 
+    protected void makeRandomMovement() {
+        Random rnd=new Random();
+        int move=rnd.nextInt(5);//if move is 4 than do nothing
+        if(move==0) {
+            moveUp();
+        }
+        else if(move==1) {
+            moveDown();
+        }
+        else if(move==2) {
+            moveLeft();
+        }
+        else if(move==3) {
+            moveRight();
         }
     }
 }
