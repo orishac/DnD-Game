@@ -3,14 +3,15 @@ package Model.Tile.Units.Enemy;
 import Model.Board.Board;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
+import View.BoardView;
 
 public class Boss extends Monster implements HeroicUnit {
     private Stat visionRange;
     private Stat abilityFrequency;
     private Stat combatTicks;
 
-    public Boss(char type, int x, int y, String name, int pool, int amount , int attack , int defense, Board board,int range,int abilityFreq) {
-        super(type,x,y,name,pool,amount,attack,defense,range,board);
+    public Boss(char type, int x, int y, String name, int pool, int amount , int attack , int defense, Board board, int range, int abilityFreq, BoardView view) {
+        super(type,x,y,name,pool,amount,attack,defense,range,board, view);
         this.abilityFrequency=new Stat(abilityFreq);
         combatTicks=new Stat(0);
     }
