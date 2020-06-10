@@ -1,14 +1,11 @@
 import Model.Board.Board;
 import Controller.BoardController;
 import Model.Tile.Empty;
+import Model.Tile.Units.Player.*;
 import Model.Tile.Wall;
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Enemy.Trap;
-import Model.Tile.Units.Player.Mage;
-import Model.Tile.Units.Player.Player;
-import Model.Tile.Units.Player.Rogue;
-import Model.Tile.Units.Player.Warrior;
 import View.BoardView;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -167,6 +164,13 @@ public class Gameplay {
                             myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3,50, model, view);
                             System.out.print("You have selected:\n" +
                                     "Bronn \n");
+                            model.add(myPlayer);
+                            model.setPlayer(myPlayer);
+                        }
+                        if (chosen == 7) {
+                            myPlayer = new Hunter(x, y, "Ygritte", 220, 220, 30, 2,model, 6, view);
+                            System.out.print("You have selected:\n" +
+                                    "Ygritte \n");
                             model.add(myPlayer);
                             model.setPlayer(myPlayer);
                         }
