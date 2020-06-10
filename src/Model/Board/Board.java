@@ -120,5 +120,17 @@ public class Board {
     public Tile getPlayer() {
         return player;
     }
+
+    public double rangeFromPlayer(Tile enemy) {
+        return range(player,enemy);
+    }
+
+    public int getXDifferenceFromPlayer(Monster monster) {
+        return monster.getXcoor()-player.getXcoor();
+    }
+
+    public int getYDifferenceFromPlayer(Monster monster) {
+        return monster.getYcoor()-player.getYcoor();
+    }
 }
 

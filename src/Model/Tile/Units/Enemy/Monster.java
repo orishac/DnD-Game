@@ -20,8 +20,28 @@ public class Monster extends Enemy {
         return true;
     }
 
-    public boolean isPlayerInRange(Player myPlayer) {
-        return (getRange(this, myPlayer)<visionRange);
-    }
+    public void onEnemyTurn()
+    {
+        if(board.rangeFromPlayer(this)<visionRange)
+        {
+            int dx=board.getXDifferenceFromPlayer(this);
+            int dy=board.getYDifferenceFromPlayer(this);
+            if(Math.abs(dx)>Math.abs(dy)) {
+                if(dx>0)
+                    moveLeft();
+                else
+                    moveRight();
+            }
+            else {
+                if(dy>0)
+                    moveUp();
+                else
+                    moveDown();
+            }
+        }
+        else
+        {
 
+        }
+    }
 }
