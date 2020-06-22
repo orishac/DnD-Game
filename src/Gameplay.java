@@ -1,6 +1,7 @@
 import Model.Board.Board;
 import Controller.BoardController;
 import Model.Tile.Empty;
+import Model.Tile.Units.Enemy.Boss;
 import Model.Tile.Units.Player.*;
 import Model.Tile.Wall;
 import Model.Tile.Tile;
@@ -44,7 +45,7 @@ public class Gameplay {
             int i = 0;
             Board model = new Board(x, y);
             BoardView view = new BoardView();
-            List<Tile> monsterlist = new LinkedList<>();
+            List<Monster> monsterlist = new LinkedList<>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 for (int j = 0; j < model.ylength(); j++) {
@@ -58,52 +59,52 @@ public class Gameplay {
                         model.add(wall);
                     }
                     if (current == 's') {
-                        Tile monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, model, view);
+                        Monster monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'k') {
-                        Tile monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, model, view);
+                        Monster monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'q') {
-                        Tile monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, model, view);
+                        Monster monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'z') {
-                        Tile monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, model, view);
+                        Monster monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'b') {
-                        Tile monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, model, view);
+                        Monster monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'g') {
-                        Tile monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, model, view);
+                        Monster monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'w') {
-                        Tile monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, model, view);
+                        Monster monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'M') {
-                        Tile monster = new Monster('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, 6, model, view);
+                        Monster monster = new Boss('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, model, 6, 5, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'C') {
-                        Tile monster = new Monster('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, 1, model, view);
+                        Monster monster = new Boss('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, model,1, 2 ,view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'K') {
-                        Tile monster = new Monster('K', i, j, "Night’s King", 5000, 5000 , 300 , 150, 8, model, view);
+                        Monster monster = new Boss('K', i, j, "Night’s King", 5000, 5000 , 300 , 150,  model, 8, 3, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
@@ -178,6 +179,7 @@ public class Gameplay {
                 }
                 i = i + 1;
             }
+            model.setMonsterList(monsterlist);
             BoardController controller = new BoardController(model, view, myPlayer, monsterlist);
             controller.updateView();
             boolean keepRunning = false;

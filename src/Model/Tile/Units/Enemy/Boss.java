@@ -28,13 +28,13 @@ public class Boss extends Monster implements HeroicUnit {
                 int dx=board.getXDifferenceFromPlayer(this);
                 int dy=board.getYDifferenceFromPlayer(this);
                 if(Math.abs(dx)>Math.abs(dy)) {
-                    if(dx>0)
+                    if(dy>0)
                         moveLeft();
                     else
                         moveRight();
                 }
                 else {
-                    if(dy>0)
+                    if(dx>0)
                         moveUp();
                     else
                         moveDown();

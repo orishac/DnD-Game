@@ -73,5 +73,6 @@ public abstract class Player extends Unit implements HeroicUnit {
         board.removePlayer();
     }
 
+    public abstract void printStatus();
 }
 

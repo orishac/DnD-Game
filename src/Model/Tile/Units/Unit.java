@@ -1,6 +1,7 @@
 package Model.Tile.Units;
 import Model.Board.Board;
 import Model.Tile.Empty;
+import Model.Tile.Position;
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Player.Player;
@@ -34,7 +35,7 @@ public abstract class Unit extends Tile implements Visitor, Visited {
 
     public void setHealthAmount(int newHealth) {
         health.setAmount(newHealth);
-        if (health.getAmount() == 0) {
+        if (health.getAmount() <= 0) {
             removeFromBoard();
         }
     }
@@ -102,9 +103,12 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         int damage = attack - defense;
         if (damage > 0) {
             defender.setHealthAmount(defender.getHealthAmount() - damage);
-            view.PrintCombatView(attacker,defender,attack,defense,damage);
         }
+        view.PrintCombatView(attacker,defender,attack,defense,damage);
+        if (defender.getHealthAmount()<=0)
+            removeFromBoard();
     }
+
 
     public void moveUp() {
         if (interaction(board.above(this))) {
@@ -130,7 +134,12 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         }
     }
 
-    public abstract void removeFromBoard();
+    public void removeFromBoard() {
+        Position toBeRemoved = this.getPosition();
+        int x = toBeRemoved.getxCord();
+        int y = toBeRemoved.getyCord();
+        board.removeUnit(this, x,y);
+    }
 }
 
 

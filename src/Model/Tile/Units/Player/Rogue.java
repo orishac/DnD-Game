@@ -51,4 +51,9 @@ public class Rogue extends Player implements HeroicUnit {
     public boolean acceptInteraction(Visitor visitor) {
         return visitor.interact(this);
     }
+
+    @Override
+    public void printStatus() {
+        view.printRogueStatus(this.name, this.health, this.attack,this.defense, this.level, this.experience, this.currentEnergy);
+    }
 }

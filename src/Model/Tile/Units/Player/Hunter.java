@@ -30,6 +30,11 @@ public class Hunter extends Player implements HeroicUnit {
     }
 
     @Override
+    public void printStatus() {
+        view.printHunterStatus(this.name, this.health, this.attack, this.defense, this.level, this.experience, this.arrowsCount, this.range);
+    }
+
+    @Override
     public void castSpecialAbility() {
         List<Monster> monsterList=board.getMonstersInRange(range.getStatPoints());
         if(arrowsCount.getStatPoints()==0) {

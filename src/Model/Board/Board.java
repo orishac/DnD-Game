@@ -1,9 +1,11 @@
 package Model.Board;
 
+import Model.Tile.Empty;
 import Model.Tile.Position;
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
+import Model.Tile.Units.Unit;
 import Model.Tile.Wall;
 
 import java.util.LinkedList;
@@ -26,6 +28,10 @@ public class Board {
         int x = t.getXcoor();
         int y = t.getYcoor();
         board[x][y] = t;
+    }
+
+    public void setMonsterList(List<Monster> monsterList) {
+        this.monsterList = monsterList;
     }
 
     public int xlength() {
@@ -162,6 +168,12 @@ public class Board {
 
     public void removePlayer() {
         player=null;
+    }
+
+
+    public void removeUnit(Unit unit, int x, int y) {
+        monsterList.remove(unit);
+        board[x][y] = new Empty(x,y);
     }
 }
 

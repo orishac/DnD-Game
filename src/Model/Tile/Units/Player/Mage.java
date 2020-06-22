@@ -58,4 +58,9 @@ public class Mage extends Player implements HeroicUnit {
     public boolean acceptInteraction(Visitor visitor) {
         return visitor.interact(this);
     }
+
+    @Override
+    public void printStatus() {
+        view.printMageStatus(this.name, this.health, this.attack, this.defense, this.level, this.experience, this.mana, this.spellPower);
+    }
 }

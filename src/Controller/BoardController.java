@@ -46,7 +46,9 @@ public class BoardController {
             myPlayer.moveRight();
         }
         moveMonsters();
+        myPlayer.printStatus();
         view.PrintBoard(model.getBoard());
+
     }
     public void moveMonsters() {
         for (Monster m : monsterList) {

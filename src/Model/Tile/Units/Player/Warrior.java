@@ -60,4 +60,8 @@ public class Warrior extends Player implements HeroicUnit {
     public int getRemainingCooldown() {
         return remainingCooldown.getStatPoints();
     }
+
+    public void printStatus() {
+        view.printWarriorStatus(this.name, this.health, this.attack, this.defense, this.level, this.experience, this.remainingCooldown, this.abilityCooldown);
+    }
 }
