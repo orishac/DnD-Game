@@ -13,8 +13,9 @@ public abstract class Enemy extends Unit {
 
     private int experience;
 
-    public Enemy(char type, int x, int y, String name, int pool, int amount , int attack , int defense, Board board, BoardView view) {
+    public Enemy(char type, int x, int y, String name, int pool, int amount , int attack , int defense, int expValue, Board board, BoardView view) {
         super(type, x, y, name, pool, amount, attack, defense, board, view);
+        experience=expValue;
     }
 
     public abstract boolean isVisible();
@@ -55,4 +56,9 @@ public abstract class Enemy extends Unit {
         return experience;
     }
 
+    @Override
+    public void removeFromBoard(Unit attacker) {
+        super.removeFromBoard(attacker);
+        view.PrintUnitIsDead(this, attacker);
+    }
 }

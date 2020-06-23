@@ -35,9 +35,6 @@ public abstract class Unit extends Tile implements Visitor, Visited {
 
     public void setHealthAmount(int newHealth) {
         health.setAmount(newHealth);
-        if (health.getAmount() <= 0) {
-            removeFromBoard();
-        }
     }
 
     public void setAttackPoints(int attack) {
@@ -105,8 +102,9 @@ public abstract class Unit extends Tile implements Visitor, Visited {
             defender.setHealthAmount(defender.getHealthAmount() - damage);
         }
         view.PrintCombatView(attacker,defender,attack,defense,damage);
-        if (defender.getHealthAmount()<=0)
-            removeFromBoard();
+        if (defender.getHealthAmount()<=0) {
+            defender.removeFromBoard(attacker);
+        }
     }
 
 
@@ -134,7 +132,7 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         }
     }
 
-    public void removeFromBoard() {
+    public void removeFromBoard(Unit attacker) {
         Position toBeRemoved = this.getPosition();
         int x = toBeRemoved.getxCord();
         int y = toBeRemoved.getyCord();

@@ -13,8 +13,8 @@ public class Trap extends Enemy {
 
 
     public Trap(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board, int visibilityTime,
-                int invisibilityTime, BoardView view) {
-        super(type, x, y, name, pool, amount , attack , defense, board, view);
+                int invisibilityTime, int expValue, BoardView view) {
+        super(type, x, y, name, pool, amount , attack , defense, expValue, board, view);
         this.visibilityTime=visibilityTime;
         this.invisibilityTime=invisibilityTime;
         ticksCount = 0;

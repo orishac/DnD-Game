@@ -33,7 +33,7 @@ public class BoardView {
     }
 
     public void PrintUnitIsDead(Enemy defender, Unit attacker) {
-        System.out.print(defender.getName()+" died. "+attacker.getName()+" gained "+defender.getExperience()+" experience");
+        System.out.print(defender.getName()+" died. "+attacker.getName()+" gained "+defender.getExperience()+" experience\n");
     }
 
     public void printWarriorStatus(String name, Resource health, Stat attack, Stat defense, Stat level, Stat experience, Stat remainingCooldown, Stat abilityCooldown) {

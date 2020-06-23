@@ -59,68 +59,68 @@ public class Gameplay {
                         model.add(wall);
                     }
                     if (current == 's') {
-                        Monster monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, model, view);
+                        Monster monster = new Monster('s', i, j, "Lannister Solider", 80, 80 , 8 , 3, 3, 25, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'k') {
-                        Monster monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, model, view);
+                        Monster monster = new Monster('k', i, j, "Lannister Knight", 200, 200 , 14 , 8, 4, 50, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'q') {
-                        Monster monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, model, view);
+                        Monster monster = new Monster('q', i, j, "Queen’s Guard", 400, 400 , 20 , 15, 5, 100, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'z') {
-                        Monster monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, model, view);
+                        Monster monster = new Monster('z', i, j, "Wright", 600, 600 , 30 , 15, 3, 100, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'b') {
-                        Monster monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, model, view);
+                        Monster monster = new Monster('b', i, j, "Bear-Wright", 1000, 1000 , 75 , 30, 4, 250, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'g') {
-                        Monster monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, model, view);
+                        Monster monster = new Monster('g', i, j, "Giant-Wright", 1500, 1500 , 100 , 40, 5, 500, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'w') {
-                        Monster monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, model, view);
+                        Monster monster = new Monster('w', i, j, "White Walker", 2000, 2000 , 150 , 50, 6, 100, model, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'M') {
-                        Monster monster = new Boss('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, model, 6, 5, view);
+                        Monster monster = new Boss('M', i, j, "The Mountain", 1000, 1000 , 60 , 25, model, 6, 5, 500, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'C') {
-                        Monster monster = new Boss('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, model,1, 2 ,view);
+                        Monster monster = new Boss('C', i, j, "Queen Cersei", 100, 100 , 10 , 10, model,1, 2 ,1000, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'K') {
-                        Monster monster = new Boss('K', i, j, "Night’s King", 5000, 5000 , 300 , 150,  model, 8, 3, view);
+                        Monster monster = new Boss('K', i, j, "Night’s King", 5000, 5000 , 300 , 150,  model, 8, 3, 5000, view);
                         model.add(monster);
                         monsterlist.add(monster);
                     }
                     if (current == 'B') {
                         Tile trap = new Trap('B', i, j, "Bonus Trap", 1, 1, 1, 1,  model , 1,
-                        5, view);
+                        5,250, view);
                         model.add(trap);
                     }
                     if (current == 'Q') {
                         Tile trap = new Trap('Q', i, j, "Queen’s Trap", 250, 250, 50, 10,  model , 3,
-                                7, view);
+                                7, 100, view);
                         model.add(trap);
                     }
                     if (current == 'D') {
                         Tile trap = new Trap('D', i, j, "Death Trap", 500, 500, 100, 20,  model , 1,
-                                10, view);
+                                10, 250, view);
                         model.add(trap);
                     }
                     if (current == '@') {
