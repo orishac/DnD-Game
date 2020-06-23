@@ -74,5 +74,12 @@ public abstract class Player extends Unit implements HeroicUnit {
     }
 
     public abstract void printStatus();
+
+    @Override
+    public void expUp(int expPoints) {
+        experience.setStatPoints(experience.getStatPoints()+expPoints);
+        if (experience.getStatPoints()>=50*level.getStatPoints())
+            this.levelUp();
+    }
 }
 

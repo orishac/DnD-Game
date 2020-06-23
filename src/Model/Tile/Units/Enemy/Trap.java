@@ -46,4 +46,8 @@ public class Trap extends Enemy {
         }
     }
 
+    @Override
+    public void expUp(int expPoints) {
+        
+    }
 }

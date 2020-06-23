@@ -59,6 +59,7 @@ public abstract class Enemy extends Unit {
     @Override
     public void removeFromBoard(Unit attacker) {
         super.removeFromBoard(attacker);
+        attacker.expUp(this.experience);
         view.PrintUnitIsDead(this, attacker);
     }
 }

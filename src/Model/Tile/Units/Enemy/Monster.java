@@ -68,4 +68,9 @@ public class Monster extends Enemy {
     public int getVisionRange(){
         return visionRange;
     }
+
+    @Override
+    public void expUp(int expPoints) {
+
+    }
 }

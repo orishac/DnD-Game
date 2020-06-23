@@ -138,6 +138,8 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         int y = toBeRemoved.getyCord();
         board.removeUnit(this, x,y);
     }
+
+    public abstract void expUp(int expPoints);
 }
 
 

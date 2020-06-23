@@ -45,6 +45,9 @@ public class BoardController {
         if (chosen == 'd') {
             myPlayer.moveRight();
         }
+        if (chosen == 'e') {
+            myPlayer.castSpecialAbility();
+        }
         moveMonsters();
         myPlayer.printStatus();
         view.PrintBoard(model.getBoard());
