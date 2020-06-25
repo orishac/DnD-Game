@@ -67,9 +67,9 @@ public class BoardView {
                 "/" + 100 + "\n");
     }
 
-    public void printWarriorAbility(String name, Enemy randomMonster, Stat defense, Resource health) {
+    public void printWarriorAbility(String name, Enemy randomMonster, Stat defense, Resource health, int damage, int enemyRoll) {
         System.out.print(name+" used Avenger's Shield, healing for "+defense.getStatPoints()*10+".\n" +
-                        randomMonster.getName()+" rolled 1 defense points."+"\n" +
-                name+" hit "+randomMonster.getName()+" for "+health.getPool()/10+" ability damage."+"\n");
+                        randomMonster.getName()+" rolled "+enemyRoll+" defense points."+"\n" +
+                name+" hit "+randomMonster.getName()+" for "+damage+" ability damage."+"\n");
     }
 }
