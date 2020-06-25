@@ -16,7 +16,7 @@ import java.util.stream.Stream;
 public class Board {
 
     private Tile[][] board;
-    private List<Monster> monsterList;//need to change monsterList to EnemyList.
+    private List<Enemy> monsterList;//need to change monsterList to EnemyList.
     private Tile player;
 
     public Board(int x,int j) {
@@ -30,7 +30,7 @@ public class Board {
         board[x][y] = t;
     }
 
-    public void setMonsterList(List<Monster> monsterList) {
+    public void setMonsterList(List<Enemy> monsterList) {
         this.monsterList = monsterList;
     }
 
@@ -55,15 +55,15 @@ public class Board {
         monsterList.add(t);
     }
 
-    public List<Monster> getMonstersInRange(int range) {
-        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive()&monster.isVisible());
-        List<Monster> monsterList=monsterStream.collect(Collectors.toList());
+    public List<Enemy> getMonstersInRange(int range) {
+        Stream<Enemy> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive()&monster.isVisible());
+        List<Enemy> monsterList=monsterStream.collect(Collectors.toList());
         return monsterList;
     }
 
-    public List<Monster> getLivingMosters(List<Monster> monsterList) {
-        Stream<Monster> monsterStream=monsterList.stream().filter((monster)->monster.isAlive());
-        List<Monster> livingMonsterList=monsterStream.collect(Collectors.toList());
+    public List<Enemy> getLivingMosters(List<Enemy> monsterList) {
+        Stream<Enemy> monsterStream=monsterList.stream().filter((monster)->monster.isAlive());
+        List<Enemy> livingMonsterList=monsterStream.collect(Collectors.toList());
         return livingMonsterList;
     }
 
@@ -144,19 +144,19 @@ public class Board {
         return e.getYcoor()-player.getYcoor();
     }
 
-    public Monster getClosestEnemy(List<Monster> monsterList) {
+    public Enemy getClosestEnemy(List<Enemy> monsterList) {
         double minRange=-1;
-        Monster closestMonster=null;
-        for(Monster m:monsterList)
+        Enemy closestMonster=null;
+        for(Enemy e:monsterList)
         {
             if(minRange==-1) {
-                minRange=range(m,player);
-                closestMonster=m;
+                minRange=range(e,player);
+                closestMonster=e;
             }
-            else if(range(m,player)<minRange)
+            else if(range(e,player)<minRange)
             {
-                minRange=range(m,player);
-                closestMonster=m;
+                minRange=range(e,player);
+                closestMonster=e;
             }
         }
         return closestMonster;

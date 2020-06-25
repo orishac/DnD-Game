@@ -1,6 +1,7 @@
 package Model.Tile;
 
 import Model.Tile.Units.Enemy.Enemy;
+import Model.Tile.Units.Enemy.Trap;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Visitor;
 
@@ -39,4 +40,10 @@ public class Empty extends Tile {
     public boolean interact(Player player) {
         return true;
     }
+
+    public boolean interact(Trap trap) {
+        return false;
+    }
+
+
 }

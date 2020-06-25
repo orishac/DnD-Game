@@ -2,6 +2,7 @@ package Controller;
 
 import Model.Board.Board;
 import Model.Tile.Tile;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Unit;
@@ -17,7 +18,7 @@ public class BoardController {
     private Board model;
     private BoardView view;
     private Player myPlayer;
-    private List<Monster> monsterList;
+    private List<Enemy> monsterList;
 
     public BoardController (Board model, BoardView view, Player myPlayer, List monsterList) {
         this.model=model;
@@ -54,35 +55,10 @@ public class BoardController {
 
     }
     public void moveMonsters() {
-        for (Monster m : monsterList) {
-            if (model.rangeFromPlayer(m) < m.getVisionRange()) {
-                int dx = m.getXcoor() - myPlayer.getXcoor();
-                int dy = m.getYcoor() - myPlayer.getYcoor();
-                if (Math.abs(dy) > Math.abs(dx)) {
-                    if (dy > 0) {
-                        m.moveLeft();
-                    } else {
-                        m.moveRight();
-                    }
-                } else {
-                    if (dx > 0) {
-                        m.moveUp();
-                    } else {
-                        m.moveDown();
-                    }
-                }
-            } else {
-                int rnd = (int) (Math.random() * 4);
-                if (rnd == 0)
-                    m.moveUp();
-                if (rnd == 1)
-                    m.moveDown();
-                if (rnd == 2)
-                    m.moveLeft();
-                if (rnd == 3)
-                    m.moveRight();
-            }
+        for (Enemy e : monsterList) {
+            e.onEnemyTurn();
         }
     }
+
 
 }

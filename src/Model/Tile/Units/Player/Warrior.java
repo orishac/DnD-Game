@@ -1,6 +1,7 @@
 package Model.Tile.Units.Player;
 
 import Model.Board.Board;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
@@ -39,12 +40,13 @@ public class Warrior extends Player implements HeroicUnit {
         else {
             remainingCooldown.setStatPoints(abilityCooldown.getStatPoints());
             health.setAmount(Math.min(health.getAmount()+10*defense.getStatPoints(),health.getPool()));
-            List<Monster> inRangeOf3=board.getMonstersInRange(3);
+            List<Enemy> inRangeOf3=board.getMonstersInRange(3);
             Random rndGenerator=new Random();
             int randomIndex=rndGenerator.nextInt(inRangeOf3.size());
-            Monster randomMonster=inRangeOf3.get(randomIndex);
+            Enemy randomMonster=inRangeOf3.get(randomIndex);
             randomMonster.setHealthAmount(randomMonster.getHealthAmount()-getHealthAmount()/10);
             setHealthAmount(getHealthAmount()+10*defense.getStatPoints());
+            view.printWarriorAbility(this.name, randomMonster, this.defense, this.health);
         }
     }
 

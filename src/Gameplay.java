@@ -2,6 +2,7 @@ import Model.Board.Board;
 import Controller.BoardController;
 import Model.Tile.Empty;
 import Model.Tile.Units.Enemy.Boss;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Player.*;
 import Model.Tile.Wall;
 import Model.Tile.Tile;
@@ -45,7 +46,7 @@ public class Gameplay {
             int i = 0;
             Board model = new Board(x, y);
             BoardView view = new BoardView();
-            List<Monster> monsterlist = new LinkedList<>();
+            List<Enemy> monsterlist = new LinkedList<>();
             while (scanner.hasNextLine()) {
                 String line = scanner.nextLine();
                 for (int j = 0; j < model.ylength(); j++) {
@@ -109,19 +110,22 @@ public class Gameplay {
                         monsterlist.add(monster);
                     }
                     if (current == 'B') {
-                        Tile trap = new Trap('B', i, j, "Bonus Trap", 1, 1, 1, 1,  model , 1,
+                        Enemy trap = new Trap('B', i, j, "Bonus Trap", 1, 1, 1, 1,  model , 1,
                         5,250, view);
                         model.add(trap);
+                        monsterlist.add(trap);
                     }
                     if (current == 'Q') {
-                        Tile trap = new Trap('Q', i, j, "Queen’s Trap", 250, 250, 50, 10,  model , 3,
+                        Enemy trap = new Trap('Q', i, j, "Queen’s Trap", 250, 250, 50, 10,  model , 3,
                                 7, 100, view);
                         model.add(trap);
+                        monsterlist.add(trap);
                     }
                     if (current == 'D') {
-                        Tile trap = new Trap('D', i, j, "Death Trap", 500, 500, 100, 20,  model , 1,
+                        Enemy trap = new Trap('D', i, j, "Death Trap", 500, 500, 100, 20,  model , 1,
                                 10, 250, view);
                         model.add(trap);
+                        monsterlist.add(trap);
                     }
                     if (current == '@') {
                         x = i;

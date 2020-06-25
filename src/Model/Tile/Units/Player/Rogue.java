@@ -1,6 +1,7 @@
 package Model.Tile.Units.Player;
 
 import Model.Board.Board;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
@@ -34,14 +35,14 @@ public class Rogue extends Player implements HeroicUnit {
         }
         else {
             currentEnergy.setStatPoints(currentEnergy.getStatPoints()-cost.getStatPoints());
-            List<Monster>  monsterList=board.getMonstersInRange(2);
+            List<Enemy>  monsterList=board.getMonstersInRange(2);
             Random rndGenerator=new Random();
-            for (Monster m:monsterList )
+            for (Enemy e:monsterList )
              {
-                int defense=rndGenerator.nextInt(m.getDefensePoints()+1);
+                int defense=rndGenerator.nextInt(e.getDefensePoints()+1);
                 int damage=attack.getStatPoints()-defense;
                 if(damage>0) {
-                    m.setHealthAmount(m.getHealthAmount()-damage);
+                    e.setHealthAmount(e.getHealthAmount()-damage);
                 }
              }
         }

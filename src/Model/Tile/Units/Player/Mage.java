@@ -1,6 +1,7 @@
 package Model.Tile.Units.Player;
 
 import Model.Board.Board;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Resource;
@@ -39,10 +40,10 @@ public class Mage extends Player implements HeroicUnit {
             mana.setAmount(mana.getAmount()-manaCost.getStatPoints());
             int hits=0;
             Random rndGenerator=new Random();
-            List<Monster> monsterList=board.getMonstersInRange(abilityRange.getStatPoints());
+            List<Enemy> monsterList=board.getMonstersInRange(abilityRange.getStatPoints());
             while(hits<hitsCount.getStatPoints()&monsterList.size()>0) {
                 int randomIndex=rndGenerator.nextInt(monsterList.size());
-                Monster monster=monsterList.get(randomIndex);
+                Enemy monster=monsterList.get(randomIndex);
                 int defense=rndGenerator.nextInt(monster.getDefensePoints()+1);
                 int damage=spellPower.getStatPoints()-defense;
                 if(damage>0) {

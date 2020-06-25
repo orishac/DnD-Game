@@ -1,6 +1,7 @@
 package Model.Tile.Units.Player;
 
 import Model.Board.Board;
+import Model.Tile.Units.Enemy.Enemy;
 import Model.Tile.Units.Enemy.Monster;
 import Model.Tile.Units.HeroicUnit;
 import Model.Tile.Units.Stat;
@@ -36,7 +37,7 @@ public class Hunter extends Player implements HeroicUnit {
 
     @Override
     public void castSpecialAbility() {
-        List<Monster> monsterList=board.getMonstersInRange(range.getStatPoints());
+        List<Enemy> monsterList=board.getMonstersInRange(range.getStatPoints());
         if(arrowsCount.getStatPoints()==0) {
             //generate error message
         }
@@ -44,7 +45,7 @@ public class Hunter extends Player implements HeroicUnit {
             //generate error message
         }
         else {
-            Monster monster=board.getClosestEnemy(monsterList);
+            Enemy monster=board.getClosestEnemy(monsterList);
             Random rnd=new Random();
             int defense=rnd.nextInt(monster.getDefensePoints()+1);
             int damage=getAttackPoints()-defense;

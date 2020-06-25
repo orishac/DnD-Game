@@ -62,4 +62,5 @@ public abstract class Enemy extends Unit {
         attacker.expUp(this.experience);
         view.PrintUnitIsDead(this, attacker);
     }
+
 }

@@ -39,11 +39,11 @@ public class Trap extends Enemy {
         }
         else {
             ticksCount++;
-            if(board.rangeFromPlayer(this)<2)
-            {
-                interaction(board.getPlayer());
-            }
         }
+        if(board.rangeFromPlayer(this)<2) {
+            interaction(board.getPlayer());
+        }
+
     }
 
     @Override
