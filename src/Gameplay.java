@@ -145,14 +145,16 @@ public class Gameplay {
                             model.setPlayer(myPlayer);
                         }
                         if (chosen == 3) {
-                            myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, model, view);
+                            myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, 300, 15,
+                                    30, 5, 6, model, view);
                             System.out.print("You have selected:\n" +
                                     "Melisandre \n");
                             model.add(myPlayer);
                             model.setPlayer(myPlayer);
                         }
                         if (chosen == 4) {
-                            myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, model, view);
+                            myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, 150, 20,
+                                    20, 3, 4, model, view);
                             System.out.print("You have selected:\n" +
                                     "Thoros of Myr \n");
                             model.add(myPlayer);

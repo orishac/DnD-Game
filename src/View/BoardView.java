@@ -2,6 +2,7 @@ package View;
 
 import Model.Tile.Tile;
 import Model.Tile.Units.Enemy.Enemy;
+import Model.Tile.Units.Player.Mage;
 import Model.Tile.Units.Player.Player;
 import Model.Tile.Units.Resource;
 import Model.Tile.Units.Stat;
@@ -71,5 +72,11 @@ public class BoardView {
         System.out.print(name+" used Avenger's Shield, healing for "+defense.getStatPoints()*10+".\n" +
                         randomMonster.getName()+" rolled "+enemyRoll+" defense points."+"\n" +
                 name+" hit "+randomMonster.getName()+" for "+damage+" ability damage."+"\n");
+    }
+
+    public void printMageSpecialAbility(Mage mage, Enemy monster, int monsterDefense, int statPoints) {
+        System.out.print(mage.getName()+" cast Blizzard.\n"+
+                monster.getName()+" rolled "+monsterDefense+" defense points.\n" +
+                mage.getName()+" hit "+monster.getName()+" for "+statPoints+" ability damage.\n");
     }
 }

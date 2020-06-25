@@ -20,8 +20,15 @@ public class Mage extends Player implements HeroicUnit {
     private Stat hitsCount;
     private Stat abilityRange;
 
-    public Mage(int x, int y, String name, int pool, int amount, int attack, int defense, Board board, BoardView view) {
+    public Mage(int x, int y, String name, int pool, int amount, int attack, int defense, int mana , int spellPower,
+                int manaCost, int hitCount, int range, Board board, BoardView view) {
         super(x, y, name, pool, amount, attack, defense, board, view);
+        this.mana=new Resource(mana, mana/4);
+        this.spellPower = new Stat(spellPower);
+        this.manaCost = new Stat(manaCost);
+        this.hitsCount = new Stat(hitCount);
+        this.abilityRange = new Stat(range);
+
     }
 
     public void levelUp() {
@@ -40,15 +47,17 @@ public class Mage extends Player implements HeroicUnit {
             mana.setAmount(mana.getAmount()-manaCost.getStatPoints());
             int hits=0;
             Random rndGenerator=new Random();
+            int monsterDefense = 0;
             List<Enemy> monsterList=board.getMonstersInRange(abilityRange.getStatPoints());
             while(hits<hitsCount.getStatPoints()&monsterList.size()>0) {
                 int randomIndex=rndGenerator.nextInt(monsterList.size());
                 Enemy monster=monsterList.get(randomIndex);
-                int defense=rndGenerator.nextInt(monster.getDefensePoints()+1);
-                int damage=spellPower.getStatPoints()-defense;
+                monsterDefense=rndGenerator.nextInt(monster.getDefensePoints()+1);
+                int damage=spellPower.getStatPoints()-monsterDefense;
                 if(damage>0) {
                     monster.setHealthAmount(monster.getHealthAmount()-damage);
                     monsterList=board.getLivingMosters(monsterList);
+                    view.printMageSpecialAbility(this, monster, monsterDefense, damage);
                 }
                 hits++;
             }
