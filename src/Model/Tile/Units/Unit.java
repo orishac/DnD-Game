@@ -18,6 +18,7 @@ public abstract class Unit extends Tile implements Visitor, Visited {
     protected Stat attack;
     protected Board board;
     protected BoardView view;
+    protected Stat experience;
 
     public Unit(char type, int x, int y, String name, int pool, int amount, int attack, int defense, Board board, BoardView view) {
         super(type, x, y);
@@ -106,8 +107,13 @@ public abstract class Unit extends Tile implements Visitor, Visited {
         }
         view.PrintCombatView(attacker,defender,attack,defense,damage);
         if (defender.getHealthAmount()<=0) {
+            attacker.expUp(defender.getXP());
             defender.removeFromBoard(attacker);
         }
+    }
+
+    protected  int getXP() {
+        return  experience.getStatPoints();
     }
 
 

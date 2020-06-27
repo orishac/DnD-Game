@@ -4,6 +4,7 @@ import Model.Board.Board;
 import Model.Tile.Empty;
 import Model.Tile.Tile;
 import Model.Tile.Units.Player.Player;
+import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
 import Model.Tile.Units.Visitor;
 import Model.Tile.Wall;
@@ -11,11 +12,9 @@ import View.BoardView;
 
 public abstract class Enemy extends Unit {
 
-    private int experience;
-
     public Enemy(char type, int x, int y, String name, int pool, int amount , int attack , int defense, int expValue, Board board, BoardView view) {
         super(type, x, y, name, pool, amount, attack, defense, board, view);
-        experience=expValue;
+        experience=new Stat(expValue);
     }
 
     public abstract boolean isVisible();
@@ -53,13 +52,13 @@ public abstract class Enemy extends Unit {
     public abstract void onEnemyTurn();
 
     public int getExperience() {
-        return experience;
+        return experience.getStatPoints();
     }
 
     @Override
     public void removeFromBoard(Unit attacker) {
         super.removeFromBoard(attacker);
-        attacker.expUp(this.experience);
+        attacker.expUp(this.experience.getStatPoints());
         view.PrintUnitIsDead(this, attacker);
     }
 

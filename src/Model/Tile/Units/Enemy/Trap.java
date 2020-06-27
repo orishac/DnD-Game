@@ -50,4 +50,14 @@ public class Trap extends Enemy {
     public void expUp(int expPoints) {
         
     }
+
+    public String toString()
+    {
+        if(isVisible()) {
+            return this.getTile()+"";
+        }
+        else {
+            return ".";
+        }
+    }
 }
