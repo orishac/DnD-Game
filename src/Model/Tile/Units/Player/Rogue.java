@@ -44,6 +44,7 @@ public class Rogue extends Player implements HeroicUnit {
                 if(damage>0) {
                     e.setHealthAmount(e.getHealthAmount()-damage);
                 }
+                view.printRogueSpecialAbility(this.name,e.getName(),getAttackPoints(),defense);
              }
         }
     }

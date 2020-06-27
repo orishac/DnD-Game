@@ -45,11 +45,9 @@ public class Warrior extends Player implements HeroicUnit {
             int randomIndex=rndGenerator.nextInt(inRangeOf3.size());
             Enemy randomMonster=inRangeOf3.get(randomIndex);
             int attack = getHealthPool()/10;
-            int enemyDefense = rndGenerator.nextInt(randomMonster.getDefensePoints()+1);
-            int damage = attack-enemyDefense;
-            randomMonster.setHealthAmount(randomMonster.getHealthAmount()-damage);
+            randomMonster.setHealthAmount(randomMonster.getHealthAmount()-attack);
             setHealthAmount(getHealthAmount()+10*defense.getStatPoints());
-            view.printWarriorAbility(this.name, randomMonster, this.defense, this.health, damage, enemyDefense);
+            view.printWarriorAbility(this.name, randomMonster, this.defense, this.health, attack);
         }
     }
 

@@ -41,4 +41,8 @@ public abstract class Tile extends Range implements Visited, Visitor {
     }
 
 
+    public  void setTile(char c)
+    {
+        tile=c;
+    }
 }

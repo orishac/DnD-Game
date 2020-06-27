@@ -68,9 +68,8 @@ public class BoardView {
                 "/" + 100 + "\n");
     }
 
-    public void printWarriorAbility(String name, Enemy randomMonster, Stat defense, Resource health, int damage, int enemyRoll) {
+    public void printWarriorAbility(String name, Enemy randomMonster, Stat defense, Resource health, int damage) {
         System.out.print(name+" used Avenger's Shield, healing for "+defense.getStatPoints()*10+".\n" +
-                        randomMonster.getName()+" rolled "+enemyRoll+" defense points."+"\n" +
                 name+" hit "+randomMonster.getName()+" for "+damage+" ability damage."+"\n");
     }
 
@@ -78,5 +77,17 @@ public class BoardView {
         System.out.print(mage.getName()+" cast Blizzard.\n"+
                 monster.getName()+" rolled "+monsterDefense+" defense points.\n" +
                 mage.getName()+" hit "+monster.getName()+" for "+statPoints+" ability damage.\n");
+    }
+
+    public void printHunterSpecialAbility(String name,String enemyName,int defense, int statPoints) {
+        System.out.println(name+" used Shoot.\n"+
+                enemyName+" rolled "+defense+ "defense points.\n"+
+                name+" hit "+enemyName+" for "+statPoints+" ability damage.\n");
+    }
+
+    public void printRogueSpecialAbility(String name,String enemyName, int defense, int statPoints) {
+        System.out.println(name+" used Fan Of Knives.\n"+
+                enemyName+" rolled "+defense+ "defense points.\n"+
+                name+" hit "+enemyName+" for "+statPoints+" ability damage.\n");
     }
 }

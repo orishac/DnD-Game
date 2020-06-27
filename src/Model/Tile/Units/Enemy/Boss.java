@@ -50,6 +50,6 @@ public class Boss extends Monster implements HeroicUnit {
 
     @Override
     public void castSpecialAbility() {
-        //enterCombat(this,board.getPlayer()); need to be fixed and done.
+       interaction(board.getPlayer());
     }
 }

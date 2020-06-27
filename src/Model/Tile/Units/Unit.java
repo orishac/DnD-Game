@@ -35,6 +35,9 @@ public abstract class Unit extends Tile implements Visitor, Visited {
 
     public void setHealthAmount(int newHealth) {
         health.setAmount(newHealth);
+        if(health.getAmount()==0) {
+            removeFromBoard(this);
+        }
     }
 
     public void setAttackPoints(int attack) {

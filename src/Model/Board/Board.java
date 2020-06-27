@@ -166,8 +166,9 @@ public class Board {
         monsterList.remove(enemy);
     }
 
-    public void removePlayer() {
-        player=null;
+    public void removePlayer() {//the game will continue to run until this happends (player.tile!=X)
+        player.setTile('X');
+        board[player.getXcoor()][player.getYcoor()]=new Empty(player.getXcoor(),player.getYcoor());
     }
 
 

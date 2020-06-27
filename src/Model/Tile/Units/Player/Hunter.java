@@ -53,6 +53,7 @@ public class Hunter extends Player implements HeroicUnit {
             {
                 monster.setHealthAmount(monster.getHealthAmount()-damage);
             }
+            view.printHunterSpecialAbility(this.name,monster.getName(),defense,getAttackPoints());
         }
     }
 }
