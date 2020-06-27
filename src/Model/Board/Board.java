@@ -162,19 +162,17 @@ public class Board {
         return closestMonster;
     }
 
-    public void removeEnemy(Enemy enemy) {
-        monsterList.remove(enemy);
-    }
-
     public void removePlayer() {//the game will continue to run until this happends (player.tile!=X)
         player.setTile('X');
-        board[player.getXcoor()][player.getYcoor()]=new Empty(player.getXcoor(),player.getYcoor());
     }
-
 
     public void removeUnit(Unit unit, int x, int y) {
         monsterList.remove(unit);
         board[x][y] = new Empty(x,y);
+
+        if(rangeFromPlayer(unit)==1) {//meaning the player interacted with this monster than switch the locations
+            switchPlaces(player,board[x][y]);
+        }
     }
 }
 
