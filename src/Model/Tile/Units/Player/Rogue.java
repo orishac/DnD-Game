@@ -31,7 +31,7 @@ public class Rogue extends Player implements HeroicUnit {
     @Override
     public void castSpecialAbility() {
         if(currentEnergy.getStatPoints()<cost.getStatPoints()) {
-            //need to generate an error message
+            view.abilityError();
         }
         else {
             currentEnergy.setStatPoints(currentEnergy.getStatPoints()-cost.getStatPoints());
