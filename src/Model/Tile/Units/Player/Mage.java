@@ -41,7 +41,7 @@ public class Mage extends Player implements HeroicUnit {
     @Override
     public void castSpecialAbility() {
         if(mana.getAmount()<manaCost.getStatPoints()) {
-            //need to generate an error message
+            view.abilityError();
         }
         else {
             mana.setAmount(mana.getAmount()-manaCost.getStatPoints());

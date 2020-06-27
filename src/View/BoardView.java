@@ -90,4 +90,8 @@ public class BoardView {
                 enemyName+" rolled "+defense+ "defense points.\n"+
                 name+" hit "+enemyName+" for "+statPoints+" ability damage.\n");
     }
+
+    public void abilityError() {
+        System.out.println("cannot use special ability");
+    }
 }

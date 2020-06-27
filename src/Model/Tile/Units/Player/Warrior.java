@@ -35,7 +35,7 @@ public class Warrior extends Player implements HeroicUnit {
     @Override
     public void castSpecialAbility() {
         if(remainingCooldown.getStatPoints()>0) {
-            //need to generate an error message.
+            view.abilityError();
         }
         else {
             remainingCooldown.setStatPoints(abilityCooldown.getStatPoints());

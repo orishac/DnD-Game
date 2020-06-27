@@ -39,10 +39,10 @@ public class Hunter extends Player implements HeroicUnit {
     public void castSpecialAbility() {
         List<Enemy> monsterList=board.getMonstersInRange(range.getStatPoints());
         if(arrowsCount.getStatPoints()==0) {
-            //generate error message
+            view.abilityError();
         }
         else if(monsterList.size()==0) {
-            //generate error message
+            view.abilityError();
         }
         else {
             Enemy monster=board.getClosestEnemy(monsterList);
