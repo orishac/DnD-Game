@@ -13,18 +13,19 @@ import Model.Board.Board;
 public class ProjectTest {
     private Board board;
     private Warrior warrior;
+    private Enemy enemy;
 
     @Before
     public void initTest() {
         board = new Board(2,2);
         BoardView view = new BoardView();
         warrior = new Warrior(0,0, "John Snow", 100, 100, 50, 50, 3, board, view);
-        Monster monster = new Monster('s',0,1,"Soldier", 100,100,10, 10,
+        enemy = new Monster('s',0,1,"Soldier", 100,100,10, 10,
                 3, 25,board, view);
         Empty empty1 = new Empty(1,0);
         Empty empty2 = new Empty(1,1);
         board.add(warrior);
-        board.add(monster);
+        board.add(enemy);
         board.add(empty1);
         board.add(empty2);
     }
@@ -39,6 +40,21 @@ public class ProjectTest {
     public void testSwitchPlaces() {
         board.switchPlaces(board.getTile(0,0), board.getTile(1,1));
         Assert.assertEquals(board.getTile(1,1), warrior);
+    }
+
+    @Test
+    public void canMoveDown() {
+        Assert.assertTrue(board.canMoveDown(warrior));
+    }
+
+    @Test
+    public void cannotMoveUp() {
+        Assert.assertFalse(board.canMoveUp(warrior));
+    }
+
+    @Test
+    public void enemyOnRight() {
+        Assert.assertEquals(board.onRight(warrior), enemy);
     }
 
 
