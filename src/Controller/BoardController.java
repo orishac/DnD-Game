@@ -43,16 +43,18 @@ public class BoardController {
     }
 
     public void gameLoop() {
-        if(!myPlayer.isAlive()) {
+        if (!myPlayer.isAlive()) {
             view.printGameOver();
-            keepRunning=false;
-        }
-        else if(monsterList.size()==0) {
+            keepRunning = false;
+        } else if (monsterList.size() == 0) {
             loadLevel(currLevel);
             currLevel++;
         }
-        else
-        {
+        else {
+            gameRun();
+        }
+    }
+        public void gameRun() {
             Scanner myScanner = new Scanner(System.in);
             char chosen = myScanner.next().charAt(0);
             if (chosen == 'w') {
@@ -74,7 +76,7 @@ public class BoardController {
             myPlayer.printStatus();
             view.PrintBoard(model.getBoard());
         }
-    }
+
     public void moveMonsters() {
         for (Enemy e : monsterList) {
             e.onEnemyTurn();
@@ -83,9 +85,9 @@ public class BoardController {
 
     public void loadLevel(int index) {
         if(index<levels.size()) {
-            List<String> level=levels.get(index);
-            int x=level.size();
-            int y=level.get(0).length();
+            List<String> level= levels.get(index);
+            int x= level.size();
+            int y= levels.get(index).get(0).length();
             model = new Board(x, y);
             view = new BoardView();
             monsterList = new LinkedList<>();
@@ -174,6 +176,7 @@ public class BoardController {
                     if (current == '@') {
                         if(myPlayer==null) {
                             addPlayer(i,j);
+                            model.setPlayer(myPlayer);
                         }
                         else {
                             myPlayer.setCoor(i,j);
@@ -194,16 +197,29 @@ public class BoardController {
         view.showPlayers();
         int playerNumber=scanner.nextInt();
         List<Player> players=new LinkedList<>();
-        players.add(new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model, view));
-        players.add(new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model, view));
-        players.add( new Mage(x, y, "Melisandre", 100, 100, 5, 1, 300, 15,
-                30, 5, 6, model, view));
-        players.add(new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, 150, 20,
-                20, 3, 4, model, view));
-        players.add(new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model, view));
-        players.add(new Rogue(x, y, "Bronn", 250, 250, 35, 3,50, model, view));
-        players.add(new Hunter(x, y, "Ygritte", 220, 220, 30, 2,model, 6, view));
-        myPlayer=players.get(playerNumber-1);
+        if (playerNumber==1) {
+            myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model, view);
+        }
+        if (playerNumber==2) {
+            myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model, view);
+        }
+        if (playerNumber==3) {
+            myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, 300, 15,
+                    30, 5, 6, model, view);
+        }
+        if (playerNumber==4) {
+            myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, 150, 20,
+                    20, 3, 4, model, view);
+        }
+        if (playerNumber==5) {
+            myPlayer= new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model, view);
+        }
+        if (playerNumber==6) {
+            myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3, 50, model, view);
+        }
+        if (playerNumber==7) {
+            myPlayer = new Hunter(x, y, "Ygritte", 220, 220, 30, 2, model, 6, view);
+        }
     }
 
 
