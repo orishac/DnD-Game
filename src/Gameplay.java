@@ -19,9 +19,11 @@ import java.util.Scanner;
 public class Gameplay {
     public static void main(String[] args) {
         try {
-            Player myPlayer = null;
             Scanner scanner = new Scanner(new File("/Users/orish/OneDrive/Desktop/Levels/level1.txt"));
             Scanner scanner2 = new Scanner(new File("/Users/orish/OneDrive/Desktop/Levels/level1.txt"));
+            File file = new File(scanner.next());
+            File[] files = file.listFiles();
+            Player myPlayer = null;
             int x = 0;
             int y = 0;
             while (scanner2.hasNextLine()) {

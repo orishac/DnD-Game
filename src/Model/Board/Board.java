@@ -30,6 +30,10 @@ public class Board {
         board[x][y] = t;
     }
 
+    public Tile getTile(int x, int y) {
+        return board[x][y];
+    }
+
     public void setMonsterList(List<Enemy> monsterList) {
         this.monsterList = monsterList;
     }
