@@ -20,6 +20,7 @@ public class ProjectTest {
         board = new Board(2,2);
         BoardView view = new BoardView();
         warrior = new Warrior(0,0, "John Snow", 100, 100, 50, 50, 3, board, view);
+        board.setPlayer(warrior);
         enemy = new Monster('s',0,1,"Soldier", 100,100,10, 10,
                 3, 25,board, view);
         Empty empty1 = new Empty(1,0);
@@ -55,6 +56,23 @@ public class ProjectTest {
     @Test
     public void enemyOnRight() {
         Assert.assertEquals(board.onRight(warrior), enemy);
+    }
+
+    @Test
+    public void YdifferenceFromPlayerTest() {
+        Assert.assertEquals("The difference of the Y of the player and the enemy should be 1", board.getYDifferenceFromPlayer(enemy),
+                1, 0.000000001);
+    }
+
+    @Test
+    public void ifPlayerLeveledUp() {
+        warrior.expUp(50);
+        Assert.assertEquals("The player's level should be 2", warrior.getLevel(), 2, 0.0000001);
+    }
+
+    @Test
+    public void interactFalse() {
+        Assert.assertFalse(warrior.interact(enemy));
     }
 
 
