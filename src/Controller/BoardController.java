@@ -176,7 +176,6 @@ public class BoardController {
                     if (current == '@') {
                         if(myPlayer==null) {
                             addPlayer(i,j);
-                            model.setPlayer(myPlayer);
                         }
                         else {
                             myPlayer.setCoor(i,j);
@@ -190,6 +189,7 @@ public class BoardController {
             view.printGameFinish();
             keepRunning=false;
         }
+        updateView();
     }
 
     private void addPlayer(int x,int y) {
@@ -199,27 +199,35 @@ public class BoardController {
         List<Player> players=new LinkedList<>();
         if (playerNumber==1) {
             myPlayer = new Warrior(x, y, "Jon Snow", 300, 300, 30, 4, 3, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==2) {
             myPlayer = new Warrior(x, y, "The Hound", 400, 400, 20, 6, 5, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==3) {
             myPlayer = new Mage(x, y, "Melisandre", 100, 100, 5, 1, 300, 15,
                     30, 5, 6, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==4) {
             myPlayer = new Mage(x, y, "Thoros of Myr", 250, 250, 25, 4, 150, 20,
                     20, 3, 4, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==5) {
             myPlayer= new Rogue(x, y, "Arya Stark", 150, 150, 40, 2, 20, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==6) {
             myPlayer = new Rogue(x, y, "Bronn", 250, 250, 35, 3, 50, model, view);
+            model.add(myPlayer);
         }
         if (playerNumber==7) {
             myPlayer = new Hunter(x, y, "Ygritte", 220, 220, 30, 2, model, 6, view);
+            model.add(myPlayer);
         }
+        model.setPlayer(myPlayer);
     }
 
 
