@@ -11,9 +11,13 @@ import Model.Tile.Units.Enemy.Trap;
 import View.BoardView;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.stream.Collectors;
 
 
 public class Gameplay {
@@ -21,6 +25,7 @@ public class Gameplay {
         try {
             Scanner scanner = new Scanner(new File("/Users/orish/OneDrive/Desktop/Levels/level1.txt"));
             Scanner scanner2 = new Scanner(new File("/Users/orish/OneDrive/Desktop/Levels/level1.txt"));
+            //List<String> levelFiles= Files.list(Paths.get(args[0])).map(Path::toString).collect(Collectors.toList());
             File file = new File(scanner.next());
             File[] files = file.listFiles();
             Player myPlayer = null;
