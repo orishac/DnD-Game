@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Monster extends Enemy {
 
-    private int visionRange;
+    protected int visionRange;
 
     public Monster(char type, int x, int y, String name, int pool, int amount , int attack , int defense, int visionRange, int expValue, Board board, BoardView view) {
         super (type, x, y, name, pool, amount, attack, defense,expValue, board, view);

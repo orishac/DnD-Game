@@ -8,9 +8,7 @@ import Model.Tile.Units.Resource;
 import Model.Tile.Units.Stat;
 import Model.Tile.Units.Unit;
 
-public class BoardView {
-
-    private TileView[][] boardview;
+public class BoardView {//this class is used to print out messages to the user.
 
     public void PrintBoard(Tile[][] board) {
         for(int i = 0; i<board.length; i++) {

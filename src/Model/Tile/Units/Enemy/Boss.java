@@ -6,7 +6,6 @@ import Model.Tile.Units.Stat;
 import View.BoardView;
 
 public class Boss extends Monster implements HeroicUnit {
-    private Stat visionRange;
     private Stat abilityFrequency;
     private Stat combatTicks;
 
@@ -19,7 +18,7 @@ public class Boss extends Monster implements HeroicUnit {
 
     @Override
     public void onEnemyTurn() {
-        if(board.rangeFromPlayer(this)<visionRange.getStatPoints()) {
+        if(board.rangeFromPlayer(this)<visionRange) {
             if(combatTicks.getStatPoints()==abilityFrequency.getStatPoints()) {
                 combatTicks.setStatPoints(0);
                 castSpecialAbility();

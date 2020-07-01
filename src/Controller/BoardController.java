@@ -15,7 +15,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Scanner;
 
-public class BoardController {
+public class BoardController {//this class controls the game
 
     private Board model;
     private BoardView view;
@@ -24,13 +24,6 @@ public class BoardController {
     private  List<List<String>> levels;
     private int currLevel=0;
     public boolean keepRunning=true;
-
-    public BoardController (Board model, BoardView view, Player myPlayer, List monsterList) {
-        this.model=model;
-        this.view=view;
-        this.myPlayer=myPlayer;
-        this.monsterList = monsterList;
-    }
 
     public BoardController (List<List<String>> levels) {
         this.levels=levels;
@@ -43,18 +36,18 @@ public class BoardController {
     }
 
     public void gameLoop() {
-        if (!myPlayer.isAlive()) {
+        if (!myPlayer.isAlive()) {//if player dies than stop the game
             view.printGameOver();
             keepRunning = false;
-        } else if (monsterList.size() == 0) {
+        } else if (monsterList.size() == 0) {//if there are no monsters than go to next level
             loadLevel(currLevel);
             currLevel++;
         }
-        else {
+        else {//else , let the player play
             gameRun();
         }
     }
-        public void gameRun() {
+        public void gameRun() {//a player turn followed by the monster's turns
             Scanner myScanner = new Scanner(System.in);
             char chosen = myScanner.next().charAt(0);
             if (chosen == 'w') {
@@ -83,7 +76,7 @@ public class BoardController {
         }
     }
 
-    public void loadLevel(int index) {
+    public void loadLevel(int index) {//load level number index. if there are no more levels than finish the game.
         if(index<levels.size()) {
             List<String> level= levels.get(index);
             int x= level.size();
@@ -189,10 +182,11 @@ public class BoardController {
             view.printGameFinish();
             keepRunning=false;
         }
+        model.setMonsterList(monsterList);
         updateView();
     }
 
-    private void addPlayer(int x,int y) {
+    private void addPlayer(int x,int y) {//player choosing
         Scanner scanner=new Scanner(System.in);
         view.showPlayers();
         int playerNumber=scanner.nextInt();

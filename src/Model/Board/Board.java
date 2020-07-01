@@ -13,18 +13,18 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-public class Board {
+public class Board {//the board logic.
 
     private Tile[][] board;
     private List<Enemy> monsterList;//need to change monsterList to EnemyList.
     private Tile player;
 
-    public Board(int x,int j) {
+    public Board(int x,int j) {//creates the board
         board = new Tile[x][j];
         monsterList = new LinkedList<>();
     }
 
-    public void add(Tile t) {
+    public void add(Tile t) {//adds a tile to the board
         int x = t.getXcoor();
         int y = t.getYcoor();
         board[x][y] = t;
@@ -59,7 +59,7 @@ public class Board {
         monsterList.add(t);
     }
 
-    public List<Enemy> getMonstersInRange(int range) {
+    public List<Enemy> getMonstersInRange(int range) {//returns the monsters in range from player
         Stream<Enemy> monsterStream=monsterList.stream().filter((monster)->range(player,monster)<range&monster.isAlive()&monster.isVisible());
         List<Enemy> monsterList=monsterStream.collect(Collectors.toList());
         return monsterList;

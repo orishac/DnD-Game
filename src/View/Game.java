@@ -7,9 +7,8 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.stream.Collectors;
-public class Game {
+public class Game {//this runs the game. args takes a path to the levels file.
     public static void main(String[] args) {
         try {
             List<String> levelFiles= Files.list(Paths.get(args[0])).map(Path::toString).collect(Collectors.toList());
