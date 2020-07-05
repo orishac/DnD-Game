@@ -172,6 +172,8 @@ public class BoardController {//this class controls the game
                         }
                         else {
                             myPlayer.setCoor(i,j);
+                            model.add(myPlayer);
+                            model.setPlayer(myPlayer);
                         }
                     }
                 }
